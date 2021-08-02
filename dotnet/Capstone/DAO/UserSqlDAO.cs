@@ -21,12 +21,12 @@ namespace Capstone.DAO
             connectionString = dbConnectionString;
         }
 
-        public User ChangeUserPassword(User user, string newPassword)
+        public User ChangeUserPassword(User user)
         {
             User returnUser = null;
 
             IPasswordHasher passwordHasher = new PasswordHasher();
-            PasswordHash hash = passwordHasher.ComputeHash(newPassword);
+            PasswordHash hash = passwordHasher.ComputeHash(user.ChangePassword);
 
             try
             {

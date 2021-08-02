@@ -15,11 +15,16 @@ namespace Capstone.Controllers
     {
         private readonly IUserDAO userDAO;
         private readonly Security.EmailTools emailTools;
+        public ChangePasswordController(IUserDAO _userDAO)
+        {
+           
+            userDAO = _userDAO;
+        }
 
         [HttpPut]
-        public ActionResult<User> ChangePassword(User user,string newPassword)
+        public ActionResult<User> ChangePassword(User user)
         {
-            User updatedUser = userDAO.ChangeUserPassword(user, newPassword);
+            User updatedUser = userDAO.ChangeUserPassword(user);
 
             if (updatedUser != null)
             {

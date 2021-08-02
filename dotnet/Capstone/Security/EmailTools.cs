@@ -21,7 +21,7 @@ namespace Capstone.Security
         //    Port = "smtp.gmail.com",
         //    Credentials = new NetworkCredential("fitnesstrackerorange21@gmail.com", "googlesucks14"),
         //    EnableSsl = true,
-        //};   
+        //};
 
 
 
@@ -34,11 +34,11 @@ namespace Capstone.Security
 
         //};
 
-        public  bool EmailPasswordChangeConfirmation()
+        public  bool EmailPasswordChangeConfirmation(string emailRecipient)
         {
             bool result = false;
 
-            string to = "theofficialbobojones@gmail.com"; //To address    
+            string to = emailRecipient;  
             string from = "fitnesstrackerorange21@gmail.com"; //From address
             MailMessage mailMessage = new MailMessage(from, to);
 

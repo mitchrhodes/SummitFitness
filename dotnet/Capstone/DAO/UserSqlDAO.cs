@@ -14,10 +14,41 @@ namespace Capstone.DAO
 
         private readonly string sqlGetUser = "SELECT user_id, username, password_hash, salt, user_role FROM users WHERE username = @username";
         private readonly string sqlGetUsers = "SELECT user_id, username, user_role FROM users";
+        private readonly string sqlChangePassword = "UPDATE users SET password_hash = @password_hash WHERE user_id = @user.id";
 
         public UserSqlDAO(string dbConnectionString)
         {
             connectionString = dbConnectionString;
+        }
+
+        public User ChangeUserPassword(User user, string newPassword)
+        {
+            User returnUser = null;
+
+            IPasswordHasher passwordHasher = new PasswordHasher();
+            PasswordHash hash = passwordHasher.ComputeHash(newPassword);
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sqlChangePassword, conn);
+                    cmd.Parameters.AddWithValue("@password_hash", hash);
+                    cmd.Parameters.AddWithValue("@user.id", user.UserId);
+                    cmd.ExecuteNonQuery();
+
+                    user.PasswordHash = hash.ToString(); 
+                    returnUser = user;
+                }
+
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+                return returnUser;
         }
 
         public User GetUser(string username)

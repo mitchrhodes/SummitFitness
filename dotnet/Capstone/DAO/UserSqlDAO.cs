@@ -14,19 +14,19 @@ namespace Capstone.DAO
 
         private readonly string sqlGetUser = "SELECT user_id, username, password_hash, salt, user_role FROM users WHERE username = @username";
         private readonly string sqlGetUsers = "SELECT user_id, username, user_role FROM users";
-        private readonly string sqlChangePassword = "UPDATE users SET password_hash = @password_hash WHERE user_id = @user.id";
+        private readonly string sqlChangePassword = "UPDATE users SET password_hash = @password_hash WHERE username = @username";
 
         public UserSqlDAO(string dbConnectionString)
         {
             connectionString = dbConnectionString;
         }
 
-        public User ChangeUserPassword(User user)
+        public bool ChangeUserPassword(UpdatedPasswordUser user)
         {
-            User returnUser = null;
+            bool result = false;
 
             IPasswordHasher passwordHasher = new PasswordHasher();
-            PasswordHash hash = passwordHasher.ComputeHash(user.ChangePassword);
+            PasswordHash hash = passwordHasher.ComputeHash(user.NewPassword);
 
             try
             {
@@ -35,11 +35,10 @@ namespace Capstone.DAO
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sqlChangePassword, conn);
                     cmd.Parameters.AddWithValue("@password_hash", hash);
-                    cmd.Parameters.AddWithValue("@user.id", user.UserId);
+                    cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.ExecuteNonQuery();
 
-                    user.PasswordHash = hash.ToString(); 
-                    returnUser = user;
+                    result = true;
                 }
 
             }
@@ -48,7 +47,7 @@ namespace Capstone.DAO
                 throw;
             }
 
-                return returnUser;
+                return result;
         }
 
         public User GetUser(string username)

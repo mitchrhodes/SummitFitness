@@ -22,14 +22,14 @@ namespace Capstone.Controllers
         }
 
         [HttpPut]
-        public ActionResult<User> ChangePassword(User user)
+        public ActionResult<bool> ChangePassword(UpdatedPasswordUser user)
         {
-            User updatedUser = userDAO.ChangeUserPassword(user);
+            bool result = userDAO.ChangeUserPassword(user);
 
-            if (updatedUser != null)
+            if (result)
             {
-                emailTools.EmailPasswordChangeConfirmation(updatedUser.Email);
-                return Ok(updatedUser);
+                emailTools.EmailPasswordChangeConfirmation(user.Email);
+                return Ok();
             }
             else
             {

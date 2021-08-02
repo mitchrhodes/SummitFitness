@@ -1,6 +1,10 @@
 <template>
   <div>
     <form @submit.prevent="sendEmail">
+      <label>Email Address</label>
+      <input type="text" name="email_address" v-model="user.emailAddress" />'
+      <label>Username</label>
+      <input type="text" name="username" v-model="user.username" />'
       <label>New Password</label>
       <input type="text" name="new_password" v-model="user.newPassword" />
       <label>Confirm New Password</label>
@@ -22,34 +26,26 @@ export default {
   data() {
     return {
       user: {
+        emailAddress: "",
+        username: "",
         newPassword: "",
         confirmNewPassword: "",
       },
-      changedUser: {
-          user: this.$store.state.user,
-          password: this.user.newPassword
-
-      }
     };
   },
   methods: {
     sendEmail() {
       if (this.user.newPassword === this.user.confirmNewPassword) {
-          
-        passwordService.changePassword(
-            this.changedUser
-          //this.$store.state.user,
-          //this.user.newPassword
-        )
-        .then (response => {
-            console.log(response.status)
-        })
-        .catch(error => {
-            console.log(error.response)
-        })
-
+        passwordService
+          .changePassword(this.user)
+          .then((response) => {
+            console.log(response.status);
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
       } else {
-          this.$router.push('/');
+        this.$router.push("/");
       }
     },
   },

@@ -14,7 +14,7 @@ namespace Capstone.Controllers
     public class ChangePasswordController : ControllerBase
     {
         private readonly IUserDAO userDAO;
-        private readonly Security.EmailTools emailTools;
+        private readonly Security.EmailTools emailTools = new Security.EmailTools();
         public ChangePasswordController(IUserDAO _userDAO)
         {
            
@@ -23,12 +23,14 @@ namespace Capstone.Controllers
 
         [HttpPut]
         public ActionResult<bool> ChangePassword(UpdatedPasswordUser user)
+
         {
+
             bool result = userDAO.ChangeUserPassword(user);
 
             if (result)
             {
-                emailTools.EmailPasswordChangeConfirmation(user.Email);
+                emailTools.EmailPasswordChangeConfirmation(user.EmailAddress);
                 return Ok();
             }
             else

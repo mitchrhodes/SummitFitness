@@ -22,6 +22,11 @@ namespace Capstone
 
         public IConfiguration Configuration { get; }
 
+        public void TestEmail()
+        {
+            EmailTools email = new EmailTools();
+            email.EmailPasswordChangeConfirmation();
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -84,5 +89,6 @@ namespace Capstone
             app.UseHttpsRedirection();
             app.UseMvc();
         }
+
     }
 }

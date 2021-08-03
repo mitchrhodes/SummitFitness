@@ -77,6 +77,44 @@ namespace Capstone.Security
                 }
             }
         }
-        
+        public bool EmailRegistrationConfirmation(string emailRecipient, string username)
+        {
+            bool result = false;
+
+            string to = emailRecipient;
+            string from = "fitnesstrackerorange21@gmail.com"; //From address
+            using (MailMessage mailMessage = new MailMessage())
+            {
+                mailMessage.From = new MailAddress(from);
+                mailMessage.To.Add(to);
+                mailMessage.Subject = "New Account Created";
+                mailMessage.Body = $"<h1>Hello! Welcome to your fitness journey. Your username is: {username}</h1>";
+                mailMessage.BodyEncoding = Encoding.UTF8;
+                mailMessage.IsBodyHtml = true;
+
+                using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    client.Credentials = new NetworkCredential(from, "googlesucks14");
+                    //System.Net.NetworkCredential basicCredential1 =
+                    // new System.Net.NetworkCredential("fitnesstrackerorange21@gmail.com", "googlesucks14");
+                    client.EnableSsl = true;
+                    //client.UseDefaultCredentials = false;
+                    //client.Credentials = basicCredential1;
+                    try
+                    {
+                        client.Send(mailMessage);
+                        result = true;
+                    }
+
+                    catch (Exception ex)
+                    {
+                        result = false;
+                        //todo logiing here
+                    }
+                    return result;
+                }
+            }
+        }
+
     }
 }

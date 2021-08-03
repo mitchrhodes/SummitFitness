@@ -110,7 +110,7 @@ namespace Capstone.DAO
 
 
 
-        public User AddUser(string username, string password, string role)
+        public User AddUser(string username, string password, string role, string email)
         {
             IPasswordHasher passwordHasher = new PasswordHasher();
             PasswordHash hash = passwordHasher.ComputeHash(password);
@@ -121,11 +121,12 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt, user_role) VALUES (@username, @password_hash, @salt, @user_role)", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt, user_role, email) VALUES (@username, @password_hash, @salt, @user_role, @email)", conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password_hash", hash.Password);
                     cmd.Parameters.AddWithValue("@salt", hash.Salt);
                     cmd.Parameters.AddWithValue("@user_role", role);
+                    cmd.Parameters.AddWithValue("@email", email);
                     cmd.ExecuteNonQuery();
                 }
             }

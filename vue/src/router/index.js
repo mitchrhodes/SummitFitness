@@ -7,6 +7,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import ChangePassword from '../views/ChangePassword.vue'
+import Admin from '../views/Admin.vue'
 
 Vue.use(Router)
 
@@ -23,6 +24,14 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
+      meta: {
+        requiresAuth: true
+      }
+    },
     {
       path: '/',
       name: 'home',

@@ -82,6 +82,7 @@ namespace Capstone.Controllers
         public IActionResult Register(RegisterUser userParam)
         {
             IActionResult result;
+            EmailTools emailTools = new EmailTools();
 
             User existingUser = userDAO.GetUser(userParam.Username);
             if (existingUser != null)
@@ -89,9 +90,10 @@ namespace Capstone.Controllers
                 return Conflict(new { message = "Username already taken. Please choose a different username." });
             }
 
-            User user = userDAO.AddUser(userParam.Username, userParam.Password, userParam.Role);
+            User user = userDAO.AddUser(userParam.Username, userParam.Password, userParam.Role, userParam.Email);
             if (user != null)
             {
+                emailTools.EmailRegistrationConfirmation(userParam.Email, userParam.Username);
                 result = Created(user.Username, null); //values aren't read on client
             }
             else

@@ -7,7 +7,7 @@ namespace Capstone.DAO.Interfaces
     {
         User GetUser(string username);
         List<User> GetUsers();
-        User AddUser(string username, string password, string role);
+        User AddUser(string username, string password, string role, string email);
 
         bool ChangeUserPassword(UpdatedPasswordUser user);
     }

@@ -50,7 +50,7 @@ namespace Capstone.Security
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
             System.Net.NetworkCredential basicCredential1 =
                 new System.Net.NetworkCredential("fitnesstrackerorange21@gmail.com", "googlesucks14");
-            client.EnableSsl = false;
+            client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.Credentials = basicCredential1;
             try

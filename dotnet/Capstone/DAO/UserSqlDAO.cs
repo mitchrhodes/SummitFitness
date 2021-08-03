@@ -159,6 +159,7 @@ namespace Capstone.DAO
                 UserId = Convert.ToInt32(reader["user_id"]),
                 Username = Convert.ToString(reader["username"]),
                 Role = Convert.ToString(reader["user_role"]),
+                Email = Convert.ToString(reader["email"])
             };
 
             return u;

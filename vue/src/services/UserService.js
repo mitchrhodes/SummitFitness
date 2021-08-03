@@ -8,5 +8,8 @@ export default{
     },
     updateAdmin(user){
         return axios.put(path, user)
+    },
+    addEvent(event) {
+        return axios.post(path, event)
     }
 }

@@ -1,5 +1,26 @@
 <template>
   <div>
+    <a class="btn btn-primary" v-on:click="isAddNewForm = true"
+      >Creat Virtual Event</a
+    >
+    <form v-show="isAddNewForm" @submit.prevent="addEvent">
+      <label for="name">Name</label>
+      <input type="text" id="name" v-model="event.name" />
+      <label for="description">Description</label>
+      <input type="text" id="description" v-model="event.description" />
+      <label for="type">Activity Type</label>
+      <select v-model="event.type">
+        <option>Running</option>
+        <option>Walking</option>
+        <option>Biking</option>
+        <option>Swimming</option>
+      </select>
+      <label for="duration">Activity Duration in Days</label>
+      <input type="text" id="duration" v-model="event.duration" />
+      <button class="btn btn-lg btn-primary btn-block" type="submit">
+        Create Event
+      </button>
+    </form>
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
@@ -15,7 +36,13 @@
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
           <td>
-            <a class="btn btn-success" v-on:click="addAdmin(user)" v-show="user.role === 'user'"> Make Administrator </a>
+            <a
+              class="btn btn-success"
+              v-on:click="addAdmin(user)"
+              v-show="user.role === 'user'"
+            >
+              Make Administrator
+            </a>
           </td>
         </tr>
       </tbody>
@@ -35,6 +62,13 @@ export default {
         role: "",
         userId: "",
       },
+      isAddNewForm: false,
+      event: {
+        name: "",
+        description: "",
+        type: "",
+        duration: "",
+      },
     };
   },
   created() {
@@ -43,19 +77,29 @@ export default {
     });
   },
   methods: {
-    addAdmin(user){
-      userService.updateAdmin(user)
-       .then((response) => {
-            console.log(response.status);
-          })
-          .catch((error) => {
-            console.log(error.response);
-          });
-          this.$router.go();
-    }
-  }
-    
-  
+    addAdmin(user) {
+      userService
+        .updateAdmin(user)
+        .then((response) => {
+          console.log(response.status);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      this.$router.go();
+    },
+
+    addEvent() {
+      userService
+        .addEvent(this.event)
+        .then((response) => {
+          console.log(response.status);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    },
+  },
 };
 </script>
 

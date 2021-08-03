@@ -16,19 +16,24 @@ namespace Capstone.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IUserDAO userDAO;
+        private readonly IEventDAO eventDAO;
 
-        public AdminController(IUserDAO _userDAO)
+        public AdminController(IUserDAO _userDAO, IEventDAO _eventDAO)
         {
 
             userDAO = _userDAO;
+            eventDAO = _eventDAO;
         }
+        
+
+       
 
 
         [Authorize(Roles = "admin")]
         [HttpGet]
 
         public ActionResult<List<User>> GetUsers()
-        {            
+        {
             List<User> users = new List<User>();
             try
             {
@@ -38,7 +43,7 @@ namespace Capstone.Controllers
             catch (SqlException ex)
             {
                 return NotFound("Unable to communicate with database. Reporting this error: " + ex.Message);
-            }           
+            }
         }
 
         [Authorize(Roles = "admin")]
@@ -52,12 +57,34 @@ namespace Capstone.Controllers
                 result = userDAO.UpdateToAdmin(user.Username);
                 return Ok(result);
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 return NotFound(ex.Message);
-            }          
+            }
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        public ActionResult<bool> AddEvent(Event e)
+        {
+            bool result = false;
+            try
+            {
+                result = eventDAO.AddEvent(e);
+                return Ok(result);
+            }
+            catch (SqlException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+
+
+
+        
         }
     }
-
-
 }
+
+
+

@@ -40,36 +40,42 @@ namespace Capstone.Security
 
             string to = emailRecipient;  
             string from = "fitnesstrackerorange21@gmail.com"; //From address
-            MailMessage mailMessage = new MailMessage(from, to);
-
-            mailMessage.Subject = "Password Change";
-            mailMessage.Body = "<h1>This message confirms your password has changed.</h1>";
-            mailMessage.BodyEncoding = Encoding.UTF8;
-            mailMessage.IsBodyHtml = true;
-
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            System.Net.NetworkCredential basicCredential1 =
-                new System.Net.NetworkCredential("fitnesstrackerorange21@gmail.com", "googlesucks14");
-            client.EnableSsl = true;
-            client.UseDefaultCredentials = false;
-            client.Credentials = basicCredential1;
-            try
+            using (MailMessage mailMessage = new MailMessage())
             {
-                client.Send(mailMessage);
-                result = true;
+                mailMessage.From = new MailAddress(from);
+                mailMessage.To.Add(to);
+                mailMessage.Subject = "Password Change";
+                mailMessage.Body = "<h1>This message confirms your password has changed.</h1>";
+                mailMessage.BodyEncoding = Encoding.UTF8;
+                mailMessage.IsBodyHtml = true;
+
+                using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    client.Credentials = new NetworkCredential(from, "googlesucks14");
+                    //System.Net.NetworkCredential basicCredential1 =
+                       // new System.Net.NetworkCredential("fitnesstrackerorange21@gmail.com", "googlesucks14");
+                    client.EnableSsl = true;
+                    //client.UseDefaultCredentials = false;
+                    //client.Credentials = basicCredential1;
+                    try
+                    {
+                        client.Send(mailMessage);
+                        result = true;
+                    }
+
+                    catch (Exception ex)
+                    {
+                        result = false;
+                        //todo logiing here
+                    }
+
+
+
+
+
+                    return result;
+                }
             }
-
-            catch (Exception ex)
-            {
-                result = false;
-                //todo logiing here
-            }
-
-
-
-
-
-            return result;
         }
         
     }

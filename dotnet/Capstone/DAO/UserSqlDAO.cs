@@ -12,9 +12,10 @@ namespace Capstone.DAO
     {
         private readonly string connectionString;
 
-        private readonly string sqlGetUser = "SELECT user_id, username, password_hash, salt, user_role FROM users WHERE username = @username";
-        private readonly string sqlGetUsers = "SELECT user_id, username, user_role FROM users";
+        private readonly string sqlGetUser = "SELECT user_id, username, password_hash, salt, user_role, email FROM users WHERE username = @username";
+        private readonly string sqlGetUsers = "SELECT user_id, username, user_role, email FROM users";
         private readonly string sqlChangePassword = "UPDATE users SET password_hash = @password_hash, salt = @salt WHERE username = @username";
+        private readonly string sqlUpdateAdmin = "UPDATE users SET user_role = 'admin' WHERE username = @username";
 
         public UserSqlDAO(string dbConnectionString)
         {
@@ -50,6 +51,30 @@ namespace Capstone.DAO
 
                 return result;
         }
+
+        public bool UpdateToAdmin(string username)
+        {
+            bool result = false;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sqlUpdateAdmin, conn);                    
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.ExecuteNonQuery();
+
+                    result = true;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return result;
+        }
+    
 
         public User GetUser(string username)
         {

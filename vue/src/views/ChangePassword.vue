@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="alert alert-success" role="alert" v-show="isPasswordChanged">Password Changed!</div>
-    <form @submit.prevent="sendEmail">
+    <form @submit.prevent="sendEmail" class="mx-4">
       <div class="row">
         <div class="col">
           <label>Email Address</label>
@@ -26,7 +26,7 @@
         <div class="col">
           <label>New Password</label>
           <input
-            type="text"
+            type="password"
             class="form-control"
             name="new_password"
             v-model="user.newPassword"
@@ -36,13 +36,13 @@
           <label>Confirm New Password</label>
           <input
             class="form-control"
-            type="text"
+            type="password"
             name="confirm_new_password"
             v-model="user.confirmNewPassword"
           />
         </div>
       </div>
-      <input class="btn btn-success" type="submit" value="Send" />
+      <input class="btn btn-success my-3" type="submit" value="Send" />
     </form>
   </div>
 </template>

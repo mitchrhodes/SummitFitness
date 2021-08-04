@@ -1,15 +1,26 @@
 <template>
   <div>
     <div class="text-center">
-      <a class="btn btn-primary" v-on:click="isAddNewForm = true, isEventCreated = false"
+      <a
+        class="btn btn-primary my-3"
+        v-on:click="(isAddNewForm = true), (isEventCreated = false)"
         >Create Virtual Event</a
       >
     </div>
-    <div class="alert alert-success" role="alert" v-show="isEventCreated">
+    <div class="alert alert-success mx-4" role="alert" v-show="isEventCreated">
       Event Created!
+      <button
+        type="button"
+        class="close btn bg-transparent text-right"
+        data-dismiss="alert"
+        aria-label="Close"
+        v-on:click="isEventCreated = false"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
 
-    <form  v-show="isAddNewForm" @submit.prevent="addEvent">
+    <form class="mx-4" v-show="isAddNewForm" @submit.prevent="addEvent">
       <div class="row">
         <div class="col">
           <label for="name">Name</label>
@@ -43,26 +54,27 @@
         <div class="col">
           <label for="duration">Activity Duration in Days</label>
           <input
-            type="text"
+            type="number"
+            step="1"
             id="duration"
             class="form-control"
             v-model="event.duration"
           />
         </div>
       </div>
-      <div class="text-center">
+      <div class="text-center my-3">
         <button class="btn btn-primary btn-block" type="submit">
           Create Event
         </button>
       </div>
     </form>
-    <table class="table table-bordered table-hover mx-4">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">Username</th>
           <th scope="col">Email Address</th>
           <th scope="col">Role</th>
-          <th scope="col"></th>
+          <th scope="col">Change Role</th>
         </tr>
       </thead>
       <tbody>

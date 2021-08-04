@@ -1,18 +1,36 @@
 <template>
   <div>
     <form @submit.prevent="sendEmail">
-      <label>Email Address</label>
-      <input type="text" name="email_address" v-model="user.emailAddress" />'
-      <label>Username</label>
-      <input type="text" name="username" v-model="user.username" />'
-      <label>New Password</label>
-      <input type="text" name="new_password" v-model="user.newPassword" />
-      <label>Confirm New Password</label>
-      <input
-        type="text"
-        name="confirm_new_password"
-        v-model="user.confirmNewPassword"
-      />
+      <div class="form-row">
+        <div class="column">
+          <label>Email Address</label>
+          <input class="form-control"
+            type="text"
+            name="email_address"
+            v-model="user.emailAddress"
+          />
+        </div>
+        <div class="column">
+          <label>Username</label>
+          <input type="text" name="username" 
+          class="form-control" v-model="user.username" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="column">
+          <label>New Password</label>
+          <input type="text" class="form-control" name="new_password" v-model="user.newPassword" />
+        </div>
+        <div class="column">
+          <label>Confirm New Password</label>
+          <input
+            class="form-control"
+            type="text"
+            name="confirm_new_password"
+            v-model="user.confirmNewPassword"
+          />
+        </div>
+      </div>
       <input type="submit" value="Send" />
     </form>
   </div>

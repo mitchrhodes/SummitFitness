@@ -20,15 +20,9 @@ namespace Capstone.Controllers
 
         public AdminController(IUserDAO _userDAO, IEventDAO _eventDAO)
         {
-
             userDAO = _userDAO;
             eventDAO = _eventDAO;
         }
-        
-
-       
-
-
         [Authorize(Roles = "admin")]
         [HttpGet]
 
@@ -77,11 +71,6 @@ namespace Capstone.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            
-
-
-
-        
         }
     }
 }

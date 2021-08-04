@@ -1,27 +1,38 @@
 <template>
   <div>
+    <div class="alert alert-success" role="alert" v-show="isPasswordChanged">Password Changed!</div>
     <form @submit.prevent="sendEmail">
-      <div class="form-row">
-        <div class="column">
+      <div class="row">
+        <div class="col">
           <label>Email Address</label>
-          <input class="form-control"
+          <input
+            class="form-control"
             type="text"
             name="email_address"
             v-model="user.emailAddress"
           />
         </div>
-        <div class="column">
+        <div class="col">
           <label>Username</label>
-          <input type="text" name="username" 
-          class="form-control" v-model="user.username" />
+          <input
+            type="text"
+            name="username"
+            class="form-control"
+            v-model="user.username"
+          />
         </div>
       </div>
-      <div class="form-row">
-        <div class="column">
+      <div class="row">
+        <div class="col">
           <label>New Password</label>
-          <input type="text" class="form-control" name="new_password" v-model="user.newPassword" />
+          <input
+            type="text"
+            class="form-control"
+            name="new_password"
+            v-model="user.newPassword"
+          />
         </div>
-        <div class="column">
+        <div class="col">
           <label>Confirm New Password</label>
           <input
             class="form-control"
@@ -31,7 +42,7 @@
           />
         </div>
       </div>
-      <input type="submit" value="Send" />
+      <input class="btn btn-success" type="submit" value="Send" />
     </form>
   </div>
 </template>
@@ -49,6 +60,7 @@ export default {
         newPassword: "",
         confirmNewPassword: "",
       },
+      isPasswordChanged: false,
     };
   },
   methods: {
@@ -63,8 +75,10 @@ export default {
             console.log(error.response);
           });
       } else {
-        this.$router.push("/");
+        this.$router.push("/");        
       }
+      this.isPasswordChanged = true;
+      this.user = {};
     },
   },
 };

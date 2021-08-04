@@ -1,27 +1,62 @@
 <template>
   <div>
-    <a class="btn btn-primary" v-on:click="isAddNewForm = true"
-      >Creat Virtual Event</a
-    >
-    <form v-show="isAddNewForm" @submit.prevent="addEvent">
-      <label for="name">Name</label>
-      <input type="text" id="name" v-model="event.name" />
-      <label for="description">Description</label>
-      <input type="text" id="description" v-model="event.description" />
-      <label for="type">Activity Type</label>
-      <select v-model="event.type">
-        <option>Running</option>
-        <option>Walking</option>
-        <option>Biking</option>
-        <option>Swimming</option>
-      </select>
-      <label for="duration">Activity Duration in Days</label>
-      <input type="text" id="duration" v-model="event.duration" />
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Event
-      </button>
+    <div class="text-center">
+      <a class="btn btn-primary" v-on:click="isAddNewForm = true, isEventCreated = false"
+        >Create Virtual Event</a
+      >
+    </div>
+    <div class="alert alert-success" role="alert" v-show="isEventCreated">
+      Event Created!
+    </div>
+
+    <form  v-show="isAddNewForm" @submit.prevent="addEvent">
+      <div class="row">
+        <div class="col">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            v-model="event.name"
+          />
+        </div>
+        <div class="col">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            id="description"
+            class="form-control"
+            v-model="event.description"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="type">Activity Type</label>
+          <select v-model="event.type" class="form-control">
+            <option>Running</option>
+            <option>Walking</option>
+            <option>Biking</option>
+            <option>Swimming</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="duration">Activity Duration in Days</label>
+          <input
+            type="text"
+            id="duration"
+            class="form-control"
+            v-model="event.duration"
+          />
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary btn-block" type="submit">
+          Create Event
+        </button>
+      </div>
     </form>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover mx-4">
       <thead>
         <tr>
           <th scope="col">Username</th>
@@ -63,6 +98,7 @@ export default {
         userId: "",
       },
       isAddNewForm: false,
+      isEventCreated: false,
       event: {
         name: "",
         description: "",
@@ -98,6 +134,9 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
+      this.isAddNewForm = false;
+      this.isEventCreated = true;
+      this.event = {};
     },
   },
 };

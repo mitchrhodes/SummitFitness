@@ -11,7 +11,7 @@ namespace Capstone.DAO
     public class EventDAO : IEventDAO
     {
         private readonly string connectionString;
-
+       
         public EventDAO(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -29,7 +29,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@name", e.Name);
                     cmd.Parameters.AddWithValue("@description", e.Description);
                     cmd.Parameters.AddWithValue("@type", e.Type);
-                    cmd.Parameters.AddWithValue("@period", int.Parse(e.Duration));
+                    cmd.Parameters.AddWithValue("@period", (e.Duration));
                     cmd.ExecuteNonQuery();
                 }
                 return true;
@@ -39,39 +39,71 @@ namespace Capstone.DAO
                 return false;
             }
         }
-
         public List<Event> GetEvents()
         {
             List<Event> events = new List<Event>();
-
+           
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(sqlGetPets, conn);
+                    SqlCommand cmd = new SqlCommand("SELECT name, description, type, period_in_days FROM events", conn);
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    while(reader.Read())
                     {
-                        Event event = new Event();
-                        event.Name = Convert.ToString(reader["name"]);
-                        event.Type = Convert.ToString(reader["type"]);
-                        event.Description = Convert.ToString(reader["description"]);
-                        event.Duration = Convert.ToInt32(reader["period_in_days"]);
-                        events.Add (event);
+                        Event e = new Event();
+                        e.Name = Convert.ToString(reader["name"]);
+                        e.Type = Convert.ToString(reader["type"]);
+                        e.Description = Convert.ToString(reader["description"]);
+                        e.Duration = Convert.ToInt32(reader["period_in_days"]);
+                       events.Add (e);
+
                     }
-                }
+}
             }
             catch (Exception ex)
             {
-                Event = new List<Event>();
+                events = new List<Event>();
             }
-            return event;
+            return events;
         }
     }
 }
 
-}
+//        public List<Event> GetEvents()
+//        {
+//            List<Event> events = new List<Event>();
+
+//            try
+//            {
+//                using (SqlConnection conn = new SqlConnection(connectionString))
+//                {
+//                    conn.Open();
+//                    SqlCommand cmd = new SqlCommand(sqlGetPets, conn);
+//                    SqlDataReader reader = cmd.ExecuteReader();
+//                    while (reader.Read())
+//                    {
+//                        Event event = new Event();
+//                        event.Name = Convert.ToString(reader["name"]);
+//                        event.Type = Convert.ToString(reader["type"]);
+//                        event.Description = Convert.ToString(reader["description"]);
+//                        event.Duration = Convert.ToInt32(reader["period_in_days"]);
+//                        events.Add (event);
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                Event = new List<Event>();
+//            }
+//            return event;
+//        }
+//    }
+//}
+
+//}
 
    
 

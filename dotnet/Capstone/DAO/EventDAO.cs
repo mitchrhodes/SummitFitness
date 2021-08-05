@@ -49,21 +49,32 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM events", conn);
+                    SqlCommand cmd = new SqlCommand(sqlGetPets, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
-
                     while (reader.Read())
-                        Event event = new Event()
-                        {
-                            Name = Convert.ToInt32(reader["name"]),
-                            Type = Convert.ToInt32(reader["type"]),
-                            Description = Convert.ToInt32(reader["description"]),
-                            Duration = Convert.ToInt32(reader["period_in_days"])
-                        };
-                }          
+                    {
+                        Event event = new Event();
+                        event.Name = Convert.ToString(reader["name"]);
+                        event.Type = Convert.ToString(reader["type"]);
+                        event.Description = Convert.ToString(reader["description"]);
+                        event.Duration = Convert.ToInt32(reader["period_in_days"]);
+                        events.Add (event);
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                Event = new List<Event>();
+            }
+            return event;
         }
     }
 }
+
+}
+
+   
+
+           
    
        

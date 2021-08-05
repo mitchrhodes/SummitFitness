@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <h1>Home</h1>
+    <div class="text-center">
+      <router-link class="btn btn-success" v-bind:to="{ name: 'goals' }">Goals</router-link>
+   
     <table class="table table-hover">
       <thead>
         <tr>
@@ -22,18 +25,10 @@
           <td>
             <a class="btn btn-success" v-on:click="SignUp(event.eventId)">Sign Up For Event</a>
           </td>
-         <!-- <td>
-            <a
-              class="btn btn-success"
-              v-on:click="signUp(event)"
-              v-show="user.role === 'user'"
-            >
-              Make Administrator
-            </a> 
-          </td>-->
         </tr>
       </tbody> 
     </table>
+  </div>
   </div>
 </template>
 
@@ -43,7 +38,17 @@ export default {
   name: "home",
   data() {
     return {
+      isAddNewForm:  false,
+      isEventCreated: true,
       isEventsShown: false,
+      goals: [],
+      goal: {
+        name: "",
+        description: "",
+        type: "",
+        time: "",
+        distance: ""
+      },
       events: [],
       event: {
         eventId: "",
@@ -74,11 +79,8 @@ export default {
         })
         .catch((error) => {
           console.log(error.response);
-        });
-    
-
-
-    }
+        });    
+    },
   },
 };
 </script>

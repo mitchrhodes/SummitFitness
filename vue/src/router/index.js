@@ -8,6 +8,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import ChangePassword from '../views/ChangePassword.vue'
 import Admin from '../views/Admin.vue'
+import Goals from '../views/Goals.vue'
 
 Vue.use(Router)
 
@@ -28,6 +29,14 @@ const router = new Router({
       path: '/admin',
       name: 'admin',
       component: Admin,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/goals",
+      name: "goals",
+      component: Goals,
       meta: {
         requiresAuth: true
       }

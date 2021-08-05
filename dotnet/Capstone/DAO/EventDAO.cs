@@ -58,7 +58,7 @@ namespace Capstone.DAO
                         e.Name = Convert.ToString(reader["name"]);
                         e.Type = Convert.ToString(reader["type"]);
                         e.Description = Convert.ToString(reader["description"]);
-                        e.Duration = Convert.ToInt32(reader["period_in_days"]);
+                        e.Duration = Convert.ToString(reader["period_in_days"]);
                        events.Add (e);
 
                     }

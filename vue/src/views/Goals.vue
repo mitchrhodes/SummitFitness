@@ -1,14 +1,21 @@
 <template>
   <div>
     <h1>GOALS</h1>
-    <div class="alert alert-success mx-4" role="alert" v-show="isEventCreated">
+    <div class="text-center">
+      <a
+        class="btn btn-primary my-3"
+        v-on:click="(isAddNewForm = true), (isGoalCreated = false)"
+        >Add Goal</a
+      >
+    </div>
+    <div class="alert alert-success mx-4" role="alert" v-show="isGoalCreated">
       Event Created!
       <button
         type="button"
         class="close btn bg-transparent text-right"
         data-dismiss="alert"
         aria-label="Close"
-        v-on:click="isEventCreated = false"
+        v-on:click="isGoalCreated = false"
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -52,7 +59,7 @@
             step="1"
             id="duration"
             class="form-control"
-            v-model="goal.time"
+            v-model="goal.duration"
           />
         </div>
         <div class="col">
@@ -85,17 +92,19 @@ export default {
       isAddNewForm: false,
       goals: [],
       goal: {
+        userId: "",
           name: "",
           description: "",
           type: "",
-          time: "",
+          duration: "",
           distance: ""
       },
     };
   },
   methods: {
 
-  addEvent() {
+  addGoal() {
+     this.goal.userId = this.$store.state.user.userId;
       goalService
         .addGoal(this.goal)
         .then((response) => {

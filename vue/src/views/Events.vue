@@ -1,0 +1,76 @@
+<template>
+  <div>
+    <h1>EVENTS</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Event ID</th>
+          <th scope="col">Event</th>
+          <th scope="col">Description</th>
+          <th scope="col">Type</th>
+          <th scope="col">Duration</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="event in events" v-bind:key="event.name">
+          <td>{{ event.eventId }}</td>
+          <td>{{ event.name }}</td>
+          <td>{{ event.description }}</td>
+          <td>{{ event.type }}</td>
+          <td>{{ event.duration }}</td>
+          <td>
+            <a class="btn btn-success" v-on:click="SignUp(event.eventId)"
+              >Sign Up For Event</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+import eventService from "../services/EventService"
+export default {
+  name: "events",
+  data() {
+    return {
+      events: [],
+      event: {
+        eventId: "",
+        name: "",
+        description: "",
+        type: "",
+        duration: "",
+      },
+      signUpInfo: {
+        eventId: "",
+        userId: "",
+      },
+    };
+  },
+  created() {
+    eventService.getEvents().then((response) => {
+      this.events = response.data;
+    });
+  },
+  methods: {
+    SignUp(eventId) {
+      this.signUpInfo.eventId = eventId;
+      this.signUpInfo.userId = this.$store.state.user.userId;
+      eventService
+        .signUp(this.signUpInfo)
+        .then((response) => {
+          console.log(response.status + "We got here");
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    },
+  },
+};
+</script>
+
+<style>
+</style>

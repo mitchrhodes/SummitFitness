@@ -12,12 +12,12 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class Controller : ControllerBase
+    public class EventsController : ControllerBase
     {
         
         private readonly IEventDAO eventDAO;
 
-        public Controller(IEventDAO _eventDAO)
+        public EventsController(IEventDAO _eventDAO)
         {
             
             eventDAO = _eventDAO;

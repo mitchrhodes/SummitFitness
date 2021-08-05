@@ -9,6 +9,7 @@ import Register from '../views/Register.vue'
 import ChangePassword from '../views/ChangePassword.vue'
 import Admin from '../views/Admin.vue'
 import Goals from '../views/Goals.vue'
+import Events from '../views/Events.vue'
 
 Vue.use(Router)
 
@@ -37,6 +38,14 @@ const router = new Router({
       path: "/goals",
       name: "goals",
       component: Goals,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/events",
+      name: "events",
+      component: Events,
       meta: {
         requiresAuth: true
       }

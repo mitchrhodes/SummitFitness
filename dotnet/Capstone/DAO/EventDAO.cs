@@ -39,5 +39,31 @@ namespace Capstone.DAO
                 return false;
             }
         }
+
+        public List<Event> GetEvents()
+        {
+            List<Event> events = new List<Event>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM events", conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                        Event event = new Event()
+                        {
+                            Name = Convert.ToInt32(reader["name"]),
+                            Type = Convert.ToInt32(reader["type"]),
+                            Description = Convert.ToInt32(reader["description"]),
+                            Duration = Convert.ToInt32(reader["period_in_days"])
+                        };
+                }          
+            }
+        }
     }
 }
+   
+       

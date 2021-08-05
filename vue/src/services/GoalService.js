@@ -4,7 +4,7 @@ const path = "/goals";
 
 export default{
    
-    addEvent(event) {
-        return axios.post(path, event)
+    addGoal(goal) {
+        return axios.post(path, goal)
     }
 }

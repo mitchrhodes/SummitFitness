@@ -76,10 +76,13 @@
 </template>
 
 <script>
+import goalService from "../services/GoalService"
 export default {
   name: "goals",
   data() {
     return {
+      isGoalCreated : false,
+      isAddNewForm: false,
       goals: [],
       goal: {
           name: "",
@@ -90,6 +93,22 @@ export default {
       },
     };
   },
+  methods: {
+
+  addEvent() {
+      goalService
+        .addGoal(this.goal)
+        .then((response) => {
+          console.log(response.status);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      this.isAddNewForm = false;
+      this.isGoalCreated = true;
+      this.goal = {};
+    },
+  }
 };
 </script>
 

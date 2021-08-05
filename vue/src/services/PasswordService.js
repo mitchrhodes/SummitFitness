@@ -3,7 +3,7 @@ import axios from 'axios';
 const path = '/changePassword';
 
 export default {
-    changePassword(user) {//, newPassword) {
+    changePassword(user)  {
         return axios.put(path, user)
     }
 }

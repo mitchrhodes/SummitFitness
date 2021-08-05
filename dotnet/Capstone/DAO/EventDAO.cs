@@ -49,11 +49,12 @@ namespace Capstone.DAO
                 {
                     
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT name, description, type, period_in_days FROM events", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT event_id, name, description, type, period_in_days FROM events", conn);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while(reader.Read())
                     {
                         Event e = new Event();
+                        e.EventId = Convert.ToInt32(reader["event_id"]);
                         e.Name = Convert.ToString(reader["name"]);
                         e.Type = Convert.ToString(reader["type"]);
                         e.Description = Convert.ToString(reader["description"]);
@@ -68,6 +69,28 @@ namespace Capstone.DAO
                 events = new List<Event>();
             }
             return events;
+        }
+
+        public bool SignUp(SignUpInfo info)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO events (name, description, type, period_in_days) VALUES (@name, @description, @type, @period)", conn);
+                    cmd.Parameters.AddWithValue("@name", e.Name);
+                    cmd.Parameters.AddWithValue("@description", e.Description);
+                    
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                return false;
+            }
         }
     }
 }

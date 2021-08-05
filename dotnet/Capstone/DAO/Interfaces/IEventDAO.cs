@@ -10,5 +10,6 @@ namespace Capstone.DAO.Interfaces
     {
         public bool AddEvent(Event e);
         public List<Event> GetEvents();
+        public bool SignUp(SignUpInfo info);
     }
 }

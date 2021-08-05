@@ -11,5 +11,6 @@ namespace Capstone.Models
         public string Description { get; set; }
         public string Type { get; set; }
         public int Duration { get; set; }
+        public int EventId { get; set; }
     }
 }

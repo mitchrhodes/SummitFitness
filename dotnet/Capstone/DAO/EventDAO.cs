@@ -73,15 +73,16 @@ namespace Capstone.DAO
 
         public bool SignUp(SignUpInfo info)
         {
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO events (name, description, type, period_in_days) VALUES (@name, @description, @type, @period)", conn);
-                    cmd.Parameters.AddWithValue("@name", e.Name);
-                    cmd.Parameters.AddWithValue("@description", e.Description);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO user_events (event_id, user_id) VALUES (@event_id, @user_id)", conn);
+                    cmd.Parameters.AddWithValue("@event_id", info.EventId);
+                    cmd.Parameters.AddWithValue("@user_id", info.UserId);
                     
                     cmd.ExecuteNonQuery();
                 }

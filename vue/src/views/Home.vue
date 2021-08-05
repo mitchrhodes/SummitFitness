@@ -54,7 +54,7 @@ export default {
       },
       signUpInfo: {
         eventId: "",
-        currentUserId: this.$store.state.user.userId,
+        userId: "",
       },
     };
   },
@@ -66,10 +66,11 @@ export default {
   methods: {
     SignUp(eventId) {
       this.signUpInfo.eventId = eventId;
+      this.signUpInfo.userId = this.$store.state.user.userId;
          homeService
         .signUp(this.signUpInfo)
         .then((response) => {
-          console.log(response.status);
+          console.log(response.status + 'We got here');
         })
         .catch((error) => {
           console.log(error.response);

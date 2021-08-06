@@ -128,7 +128,7 @@ export default {
       isAddNewForm: false,
       goals: [],
       goal: {
-        goalId: "",
+        goalId: 0,
         userId: "",
         name: "",
         description: "",

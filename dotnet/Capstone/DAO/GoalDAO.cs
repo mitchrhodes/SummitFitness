@@ -95,7 +95,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("UPDATE goals SET  distance_progress =@distance_progress WHERE goal_id = @goal_id", conn);
+                    SqlCommand cmd = new SqlCommand("UPDATE goals SET  distance_progress =(SELECT distance_progress FROM goals WHERE goal_id = @goal_id) + @distance_progress WHERE goal_id = @goal_id", conn);
                     
                     cmd.Parameters.AddWithValue("@distance_progress", goal.DistanceProgress);
                     cmd.Parameters.AddWithValue("@goal_id", goal.GoalId);

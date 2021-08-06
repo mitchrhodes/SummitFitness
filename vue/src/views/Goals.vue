@@ -4,6 +4,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
+          <th scope="col" >Goal ID</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
           <th scope="col">Type</th>
@@ -15,14 +16,22 @@
       </thead>
       <tbody>
         <tr v-for="goal in goals" v-bind:key="goal.name">
+          <td>{{goal.goalId}}</td>
           <td>{{ goal.name }}</td>
           <td>{{ goal.description }}</td>
           <td>{{ goal.type }}</td>
           <td>{{ goal.duration }}</td>
           <td>{{ goal.distance }}</td>
-          <td>{{ goal.progress }}</td>
+          <td>{{ goal.distanceProgress }}</td>
           <td>
-            <a class="btn btn-success">Add Progress</a>
+            <a class="btn btn-success" v-on:click="isAddProgress = true">Add Progress</a>
+          </td>
+          <td>
+          <form v-show="isAddProgress" @submit.prevent="logGoal(goal.goalId)">
+            <label for="progress">Progress Towards Goal</label>
+            <input type="number" id="progress" v-model="updateProgress.distanceProgress"/>
+            <button class="btn btn-primary btn-block" type="submit">Update Progress</button>
+          </form>
           </td>
         </tr>
       </tbody>
@@ -114,6 +123,7 @@ export default {
   name: "goals",
   data() {
     return {
+      isAddProgress: false,
       isGoalCreated: false,
       isAddNewForm: false,
       goals: [],
@@ -129,6 +139,11 @@ export default {
         time: "",
         timeProgress: "",
       },
+      updateProgress: {
+        goalId:"",
+        distanceProgress: "",
+      },
+      
     };
   },
   created() {
@@ -153,9 +168,10 @@ export default {
       this.goal = {};
     },
 
-   logGoal() {
+   logGoal(id) {
+     this.updateProgress.goalId = id;
      goalService
-     .logGoal(this.goal)
+     .logGoal(this.updateProgress)
      .then((response) => {
           console.log(response.status);
         })

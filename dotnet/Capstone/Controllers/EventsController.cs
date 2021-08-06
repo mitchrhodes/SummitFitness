@@ -37,6 +37,22 @@ namespace Capstone.Controllers
                 return NotFound("Unable to communicate with database. Reporting this error: " + ex.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<bool> GetUserEvents(int id)
+        {
+            bool result = false;
+            try
+            {
+                result = eventDAO.GetUserEvents(id);
+                return Ok();
+            }
+            catch (SqlException ex)
+            {
+                return NotFound("Unable to communicate with database. Reporting this error: " + ex.Message);
+                
+            }
+        }
         [HttpPost]
         public ActionResult<bool> SignUp(SignUpInfo info)
         {

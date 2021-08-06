@@ -9,5 +9,8 @@ export default {
     },
     signUp(signUpInfo) {
         return axios.post(path, signUpInfo)
+    },
+    getUserEvents(id) {
+        return axios.get(path + '/' + id)
     }
 }

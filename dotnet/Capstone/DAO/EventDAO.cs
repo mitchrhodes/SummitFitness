@@ -71,6 +71,36 @@ namespace Capstone.DAO
             return events;
         }
 
+        public bool GetUserEvents(int id)
+        {
+            bool result = false;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT event_id FROM user_events WHERE user_id = @user_id", conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        result = true;
+                    }
+                    else
+                    {
+                        result = false;
+                    }
+
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw;
+            }
+
+            return result;
+        }
+
         public bool SignUp(SignUpInfo info)
         {
 

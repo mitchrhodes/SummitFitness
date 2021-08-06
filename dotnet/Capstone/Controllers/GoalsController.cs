@@ -36,13 +36,13 @@ namespace Capstone.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult<List<Goal>> GetGoals()
+        [HttpGet("{id}")]
+        public ActionResult<List<Goal>> GetGoals(int id)
         {
             List<Goal> goals = new List<Goal>();
             try
             {
-                goals = goalDAO.GetGoals();
+                goals = goalDAO.GetGoals(id);
                 return Ok(goals);
             }
             catch (SqlException ex)

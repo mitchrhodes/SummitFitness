@@ -12,6 +12,9 @@ namespace Capstone.DAO
     {
         private readonly string connectionString;
 
+        private User user = new User();
+
+
         public GoalDAO(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -44,9 +47,11 @@ namespace Capstone.DAO
             }
         }
 
-        public List<Goal> GetGoals()
+        public List<Goal> GetGoals(int id)
         {
             List<Goal> goals = new List<Goal>();
+
+            
 
             try
             {
@@ -54,7 +59,8 @@ namespace Capstone.DAO
                 {
 
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM goals", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM goals WHERE user_id = @userId", conn);
+                    cmd.Parameters.AddWithValue("@userId", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -67,8 +73,9 @@ namespace Capstone.DAO
                         goal.Duration = Convert.ToString(reader["period_in_days"]);
                         goal.Distance = Convert.ToString(reader["distance"]);
                         goal.Time = Convert.ToString(reader["time"]);
-                        goal.DistanceProgress = Convert.ToString(reader["distance_progress]"]);
+                        goal.DistanceProgress = Convert.ToString(reader["distance_progress"]);
                         goal.TimeProgress = Convert.ToString(reader["time_progress"]);
+                      
                         goals.Add(goal);
 
                     }

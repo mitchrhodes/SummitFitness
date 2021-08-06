@@ -134,10 +134,11 @@ export default {
     };
   },
   created() {
+   this.goal.userId = this.$store.state.user.userId;
    goalService
-      .getGoals()
+      .getGoals(this.goal.userId)
        .then((response) => {
-          this.goals = response.status;
+          this.goals = response.data;
         })
   },
   methods: {

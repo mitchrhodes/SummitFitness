@@ -7,7 +7,7 @@ export default{
     addGoal(goal) {
         return axios.post(path, goal)
     },
-    getGoals(){
-        return axios.get(path)
+    getGoals(userId){
+        return axios.get(path + "/"+ userId)
     }
 }

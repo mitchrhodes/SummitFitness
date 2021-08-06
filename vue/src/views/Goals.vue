@@ -1,6 +1,34 @@
 <template>
   <div>
     <h1>GOALS</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>          
+          <th scope="col">Description</th>
+          <th scope="col">Type</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Distance</th>
+          <th scope="col">Progress</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="event in events" v-bind:key="event.name">
+          <td>{{ goal.name }}</td>
+          <td>{{ goal.description }}</td>
+          <td>{{ goal.type }}</td>
+          <td>{{ goal.duration }}</td>
+          <td>{{ goal.distance }}</td>
+          <td>{{ goal.progress }}</td>
+          <td>
+            <a class="btn btn-success" 
+              >Add Progress</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <div class="text-center">
       <a
         class="btn btn-primary my-3"
@@ -92,14 +120,25 @@ export default {
       isAddNewForm: false,
       goals: [],
       goal: {
+        goalId: "",
         userId: "",
           name: "",
           description: "",
           type: "",
           duration: "",
-          distance: ""
+          distance: "",
+          distanceProgress: "",
+          time: "",
+          timeProgress: ""
       },
     };
+  },
+  created() {
+   goalService
+      .getGoals()
+       .then((response) => {
+          console.log(response.status);
+        })
   },
   methods: {
 
@@ -117,6 +156,7 @@ export default {
       this.isGoalCreated = true;
       this.goal = {};
     },
+
   }
 };
 </script>

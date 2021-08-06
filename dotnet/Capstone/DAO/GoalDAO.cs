@@ -44,5 +44,42 @@ namespace Capstone.DAO
             }
         }
 
+        public List<Goal> GetGoals()
+        {
+            List<Goal> goals = new List<Goal>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM goals", conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Goal goal = new Goal();
+                        goal.GoalId= Convert.ToInt32(reader["goal_id"]);
+                        goal.UserId = Convert.ToInt32(reader["user_id"]);
+                        goal.Name = Convert.ToString(reader["goal_name"]);
+                        goal.Description = Convert.ToString(reader["goal_description"]);
+                        goal.Type = Convert.ToString(reader["goal_type"]);
+                        goal.Duration = Convert.ToString(reader["period_in_days"]);
+                        goal.Distance = Convert.ToString(reader["distance"]);
+                        goal.Time = Convert.ToString(reader["time"]);
+                        goal.DistanceProgress = Convert.ToString(reader["distance_progress]"]);
+                        goal.TimeProgress = Convert.ToString(reader["time_progress"]);
+                        goals.Add(goal);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                goals = new List<Goal>();
+            }
+            return goals;
+        }
+
     }
 }

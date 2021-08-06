@@ -9,6 +9,7 @@ namespace Capstone.DAO.Interfaces
    public  interface IGoalDAO
     {
         public bool AddGoal(Goal goal);
+        public List<Goal> GetGoals();
 
     }
 }

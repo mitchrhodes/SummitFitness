@@ -19,7 +19,6 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-
     <form class="mx-4" v-show="isAddNewForm" @submit.prevent="addEvent">
       <div class="row">
         <div class="col">

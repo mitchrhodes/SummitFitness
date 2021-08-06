@@ -24,7 +24,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Event>> GetUsers()
+        public ActionResult<List<Event>> GetEvents()
         {
             List<Event> events = new List<Event>();
             try

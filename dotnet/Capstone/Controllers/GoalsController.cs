@@ -35,6 +35,23 @@ namespace Capstone.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        public ActionResult<List<Goal>> GetGoals()
+        {
+            List<Goal> goals = new List<Goal>();
+            try
+            {
+                goals = goalDAO.GetGoals();
+                return Ok(goals);
+            }
+            catch (SqlException ex)
+            {
+                return NotFound("Unable to communicate with database. Reporting this error: " + ex.Message);
+            }
+        }
     }
+
+   
 }
 

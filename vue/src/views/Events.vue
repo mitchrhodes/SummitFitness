@@ -9,6 +9,7 @@
           <th scope="col">Description</th>
           <th scope="col">Type</th>
           <th scope="col">Duration</th>
+          <th scope="col">Signed Up?</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -19,6 +20,8 @@
           <td>{{ event.description }}</td>
           <td>{{ event.type }}</td>
           <td>{{ event.duration }}</td>
+          <td v-if="isSignedUp">Yes</td>
+          <td v-else>No</td>
           <td>
             <a class="btn btn-success" v-on:click="SignUp(event.eventId)"
               >Sign Up For Event</a
@@ -48,7 +51,8 @@ export default {
         eventId: "",
         userId: "",
       },
-    };
+      isSignedUp : this.GetUserEvents() ,
+  }
   },
   created() {
     eventService.getEvents().then((response) => {
@@ -68,6 +72,19 @@ export default {
           console.log(error.response);
         });
     },
+    GetUserEvents(){
+      const userId = this.$store.state.user.userId;
+
+      eventService
+      .getUserEvents(userId)
+      .then((response) => {
+        console.log(response.status);
+      })
+      .catch((error) =>{
+        console.log(error.response);
+      });
+
+    }
   },
 };
 </script>

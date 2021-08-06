@@ -137,7 +137,7 @@ export default {
    goalService
       .getGoals()
        .then((response) => {
-          console.log(response.status);
+          this.goals = response.status;
         })
   },
   methods: {

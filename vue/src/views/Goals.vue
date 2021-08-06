@@ -4,7 +4,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">Name</th>          
+          <th scope="col">Name</th>
           <th scope="col">Description</th>
           <th scope="col">Type</th>
           <th scope="col">Duration</th>
@@ -22,9 +22,7 @@
           <td>{{ goal.distance }}</td>
           <td>{{ goal.progress }}</td>
           <td>
-            <a class="btn btn-success" 
-              >Add Progress</a
-            >
+            <a class="btn btn-success">Add Progress</a>
           </td>
         </tr>
       </tbody>
@@ -111,40 +109,37 @@
 </template>
 
 <script>
-import goalService from "../services/GoalService"
+import goalService from "../services/GoalService";
 export default {
   name: "goals",
   data() {
     return {
-      isGoalCreated : false,
+      isGoalCreated: false,
       isAddNewForm: false,
       goals: [],
       goal: {
         goalId: "",
         userId: "",
-          name: "",
-          description: "",
-          type: "",
-          duration: "",
-          distance: "",
-          distanceProgress: "",
-          time: "",
-          timeProgress: ""
+        name: "",
+        description: "",
+        type: "",
+        duration: "",
+        distance: "",
+        distanceProgress: "",
+        time: "",
+        timeProgress: "",
       },
     };
   },
   created() {
-   this.goal.userId = this.$store.state.user.userId;
-   goalService
-      .getGoals(this.goal.userId)
-       .then((response) => {
-          this.goals = response.data;
-        })
+    this.goal.userId = this.$store.state.user.userId;
+    goalService.getGoals(this.goal.userId).then((response) => {
+      this.goals = response.data;
+    });
   },
   methods: {
-
-  addGoal() {
-     this.goal.userId = this.$store.state.user.userId;
+    addGoal() {
+      this.goal.userId = this.$store.state.user.userId;
       goalService
         .addGoal(this.goal)
         .then((response) => {
@@ -157,8 +152,7 @@ export default {
       this.isGoalCreated = true;
       this.goal = {};
     },
-
-  }
+  },
 };
 </script>
 

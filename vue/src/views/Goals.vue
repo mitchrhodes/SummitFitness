@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="event in events" v-bind:key="event.name">
+        <tr v-for="goal in goals" v-bind:key="goal.name">
           <td>{{ goal.name }}</td>
           <td>{{ goal.description }}</td>
           <td>{{ goal.type }}</td>

@@ -42,7 +42,7 @@ CREATE TABLE goals(
 	period_in_days int NOT NULL,
 	distance int,
 	time int,
-	distance_progress int,
+	distance_progress int DEFAULT 0,
 	time_progress int
 	)
 

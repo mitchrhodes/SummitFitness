@@ -152,7 +152,20 @@ export default {
       this.isGoalCreated = true;
       this.goal = {};
     },
-  },
+
+   logGoal() {
+     goalService
+     .logGoal(this.goal)
+     .then((response) => {
+          console.log(response.status);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      
+   }
+
+  }
 };
 </script>
 

@@ -50,6 +50,22 @@ namespace Capstone.Controllers
                 return NotFound("Unable to communicate with database. Reporting this error: " + ex.Message);
             }
         }
+
+        [HttpPut]
+
+        public ActionResult<bool> LogGoal(Goal goal)
+        {
+            bool result = false;
+            try
+            {
+                result = goalDAO.LogGoal(goal);
+                return Ok(result);
+            }
+            catch (SqlException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 
    

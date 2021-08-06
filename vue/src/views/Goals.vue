@@ -178,6 +178,9 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
+        this.updateProgress = {};
+        this.isAddProgress = false;
+        this.$router.go();
       
    }
 

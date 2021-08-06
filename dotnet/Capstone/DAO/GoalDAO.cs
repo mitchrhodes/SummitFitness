@@ -87,6 +87,28 @@ namespace Capstone.DAO
             }
             return goals;
         }
+        public bool LogGoal(Goal goal)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("UPDATE goals SET  distance_progress =@distance_progress WHERE goal_id = @goal_id", conn);
+                    
+                    cmd.Parameters.AddWithValue("@distance_progress", goal.DistanceProgress);
+                    cmd.Parameters.AddWithValue("@goal_id", goal.GoalId);
+
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                return false;
+            }
+        }
 
     }
 }

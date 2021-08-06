@@ -158,6 +158,18 @@ export default {
       this.goal = {};
     },
 
+   logGoal() {
+     goalService
+     .logGoal(this.goal)
+     .then((response) => {
+          console.log(response.status);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      
+   }
+
   }
 };
 </script>

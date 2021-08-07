@@ -11,6 +11,7 @@ namespace Capstone.DAO.Interfaces
         public bool AddGoal(Goal goal);
         public List<Goal> GetGoals(int id);
         public bool LogGoal(Goal goal);
+        
 
     }
 }

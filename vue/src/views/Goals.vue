@@ -1,6 +1,19 @@
 <template>
   <div>
     <h1>GOALS</h1>
+<!-- Added alert to progress updated, this refreshes the page when closed out so progress updates on screen-->
+          <div class="alert alert-success mx-4" role="alert" v-show="isProgressUpdated">
+      Progress has been updated!
+      <button
+        type="button"
+        class="close btn bg-transparent text-right"
+        data-dismiss="alert"
+        aria-label="Close"
+        v-on:click="(isProgressUpdated = false), refreshPage()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -29,7 +42,10 @@
             >
           </td>
           <td>
-            <form v-show="isAddProgress" @submit.prevent="logGoal(goal.goalId)">
+            <form
+              v-show="isAddProgress"
+              @submit.prevent="logGoal(goal.goalId), (isAddProgress = false)"
+            >
               <label for="progress">Progress Towards Goal</label>
               <input
                 type="number"
@@ -134,6 +150,7 @@ export default {
       isAddProgress: false,
       isGoalCreated: false,
       isAddNewForm: false,
+      isProgressUpdated: false,
       goals: [],
       goal: {
         goalId: 0,
@@ -148,14 +165,14 @@ export default {
         timeProgress: "",
       },
       updateProgress: {
-        goalId: "",
-        distanceProgress: 0,
-      },
-      updateHistoryLog: {
-        goalId: "",
-        userId: "",
-        dateTime: "",
+        goalId: 0,
         distanceProgress: "",
+      },
+      //udate history log JSON data type
+      updateHistoryLog: {
+        goalId: 0,
+        userId: "",
+        distanceProgress: 0,
       },
     };
   },
@@ -193,19 +210,26 @@ export default {
         });
       this.updateProgress = {};
       this.isAddProgress = false;
+      this.isProgressUpdated = true;
+      //this.$router.go();  took this out as it seems to be the issue with update progress only workign some of the time
+    },
+    //created refresh page method to be used when needed
+    refreshPage() {
       this.$router.go();
     },
+    //added update to history method
     addUpdateToHistoryLog(id) {
-      (this.updateHistoryLog.goalId = id),
-        (this.updateHistoryLog.userId = this.$store.state.user.userId),
-        goalService
-          .updateHistoryLog(this.updateHistoryLog, id)
-          .then((response) => {
-            console.log(response.status);
-          })
-          .catch((error) => {
-            console.log(error.response);
-          });
+      this.updateHistoryLog.goalId = id;
+      this.updateHistoryLog.userId = this.$store.state.user.userId;
+      this.updateHistoryLog.distanceProgress = this.updateProgress.distanceProgress;
+      goalService
+        .updateHistoryLog(this.updateHistoryLog, id)
+        .then((response) => {
+          console.log(response.status);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
     },
   },
 };

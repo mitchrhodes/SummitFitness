@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>EVENTS</h1>
+    <!-- added alert for event sign up -->
      <div class="alert alert-success mx-4" role="alert" v-show="isEventSignedUp">
       You are signed up for this event!
       <button

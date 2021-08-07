@@ -55,6 +55,7 @@ namespace Capstone.Controllers
 
         public ActionResult<bool> LogGoal(Goal goal)
         {
+         
             bool result = false;
             try
             {
@@ -66,6 +67,8 @@ namespace Capstone.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+     
     }
 
    

@@ -13,6 +13,7 @@ export default{
     logGoal(goal){
         return axios.put(path, goal)
     },
+    //added update history log post with path + goalId
     updateHistoryLog(updateHistoryLog, id){
         return axios.post(path + "/"+ id, updateHistoryLog)
     }

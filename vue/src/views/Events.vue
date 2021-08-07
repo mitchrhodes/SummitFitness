@@ -1,6 +1,18 @@
 <template>
   <div>
     <h1>EVENTS</h1>
+     <div class="alert alert-success mx-4" role="alert" v-show="isEventSignedUp">
+      You are signed up for this event!
+      <button
+        type="button"
+        class="close btn bg-transparent text-right"
+        data-dismiss="alert"
+        aria-label="Close"
+        v-on:click="isEventSignedUp = false"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -52,6 +64,7 @@ export default {
         userId: "",
       },
       isSignedUp : this.GetUserEvents() ,
+      isEventSignedUp: false,
   }
   },
   created() {
@@ -71,6 +84,7 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
+        this.isEventSignedUp = true;
     },
     GetUserEvents(){
       const userId = this.$store.state.user.userId;

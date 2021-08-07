@@ -141,7 +141,7 @@ export default {
       },
       updateProgress: {
         goalId:"",
-        distanceProgress: "",
+        distanceProgress: 0,
       },
       
     };

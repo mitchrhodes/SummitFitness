@@ -39,7 +39,7 @@ namespace Capstone.DAO
                 return false;
             }
         }
-        public List<Event> GetEvents()
+        public List<Event> GetEvents(int id)
         {
             List<Event> events = new List<Event>();
            
@@ -48,8 +48,10 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT event_id, name, description, type, period_in_days FROM events", conn);
+                    conn.Open();                    
+                    SqlCommand cmd = new SqlCommand(" SELECT * FROM events WHERE events.event_id NOT IN(SELECT events.event_id " +
+                        "FROM events JOIN user_events ON user_events.event_id = events.event_id WHERE user_events.user_id = @userId) ", conn);
+                    cmd.Parameters.AddWithValue("@userId", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while(reader.Read())
                     {
@@ -62,7 +64,7 @@ namespace Capstone.DAO
                        events.Add (e);
 
                     }
-}
+                }
             }
             catch (Exception ex)
             {
@@ -71,34 +73,37 @@ namespace Capstone.DAO
             return events;
         }
 
-        public bool GetUserEvents(int id)
+        public List<Event> GetUserEvents(int id)
         {
-            bool result = false;
+            List<Event> events = new List<Event>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
 
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT event_id FROM user_events WHERE user_id = @user_id", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT events.event_id, events.name, events.type, events.description, events.period_in_days " + 
+                        "FROM events JOIN user_events ON user_events.event_id = events.event_id WHERE user_id = @userId;", conn);
+                    cmd.Parameters.AddWithValue("@userId", id);
                     SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
+                    while (reader.Read())
                     {
-                        result = true;
-                    }
-                    else
-                    {
-                        result = false;
-                    }
+                        Event e = new Event();
+                        e.EventId = Convert.ToInt32(reader["event_id"]);
+                        e.Name = Convert.ToString(reader["name"]);
+                        e.Type = Convert.ToString(reader["type"]);
+                        e.Description = Convert.ToString(reader["description"]);
+                        e.Duration = Convert.ToString(reader["period_in_days"]);
+                        events.Add(e);
 
+                    }
                 }
             }
-            catch(SqlException ex)
+            catch (Exception ex)
             {
-                throw;
+                events = new List<Event>();
             }
-
-            return result;
+            return events;
         }
 
         public bool SignUp(SignUpInfo info)

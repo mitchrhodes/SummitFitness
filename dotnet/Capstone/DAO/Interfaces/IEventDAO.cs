@@ -9,8 +9,8 @@ namespace Capstone.DAO.Interfaces
     public interface IEventDAO
     {
         public bool AddEvent(Event e);
-        public List<Event> GetEvents();
+        public List<Event> GetEvents(int id);
         public bool SignUp(SignUpInfo info);
-        public bool GetUserEvents(int id);
+        public List<Event> GetUserEvents(int id);
     }
 }

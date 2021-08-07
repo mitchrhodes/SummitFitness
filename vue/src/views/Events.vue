@@ -8,8 +8,7 @@
         type="button"
         class="close btn bg-transparent text-right"
         data-dismiss="alert"
-        aria-label="Close"
-        v-on:click="isEventSignedUp = false"
+        aria-label="Close"       
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -22,7 +21,35 @@
           <th scope="col">Description</th>
           <th scope="col">Type</th>
           <th scope="col">Duration</th>
-          <th scope="col">Signed Up?</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="userEvent in userEvents" v-bind:key="userEvent.name">
+          <td>{{ userEvent.eventId }}</td>
+          <td>{{ userEvent.name }}</td>
+          <td>{{ userEvent.description }}</td>
+          <td>{{ userEvent.type }}</td>
+          <td>{{ userEvent.duration }}</td>  
+          <td>
+            <a class="btn btn-success" 
+              >Add Progress</a
+            >
+          </td>      
+        
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Event ID</th>
+          <th scope="col">Event</th>
+          <th scope="col">Description</th>
+          <th scope="col">Type</th>
+          <th scope="col">Duration</th>
+          <th scope="col"></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -32,9 +59,7 @@
           <td>{{ event.name }}</td>
           <td>{{ event.description }}</td>
           <td>{{ event.type }}</td>
-          <td>{{ event.duration }}</td>
-          <td v-if="isSignedUp">Yes</td>
-          <td v-else>No</td>
+          <td>{{ event.duration }}</td>         
           <td>
             <a class="btn btn-success" v-on:click="SignUp(event.eventId)"
               >Sign Up For Event</a
@@ -60,15 +85,30 @@ export default {
         type: "",
         duration: "",
       },
+      userEvents: [],
+      userEvent: {
+        eventId: "",
+        name: "",
+        description: "",
+        type: "",
+        duration: "",
+      },
       signUpInfo: {
         eventId: "",
         userId: "",
       },
-      isSignedUp : this.GetUserEvents() ,
+      userId: {
+        userId: 0,
+      },
       isEventSignedUp: false,
+      
   }
   },
   created() {
+    this.userId.userId = this.$store.state.user.userId;
+    eventService.getUserEvents(this.userId.userId).then((response) => {
+      this.userEvents = response.data;
+    });
     eventService.getEvents().then((response) => {
       this.events = response.data;
     });
@@ -86,20 +126,8 @@ export default {
           console.log(error.response);
         });
         this.isEventSignedUp = true;
-    },
-    GetUserEvents(){
-      const userId = this.$store.state.user.userId;
-
-      eventService
-      .getUserEvents(userId)
-      .then((response) => {
-        console.log(response.status);
-      })
-      .catch((error) =>{
-        console.log(error.response);
-      });
-
-    }
+        
+    },       
   },
 };
 </script>

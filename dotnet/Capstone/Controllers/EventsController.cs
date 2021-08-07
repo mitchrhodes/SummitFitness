@@ -27,9 +27,10 @@ namespace Capstone.Controllers
         public ActionResult<List<Event>> GetEvents()
         {
             List<Event> events = new List<Event>();
+            int id = int.Parse(this.User.FindFirst("sub").Value);
             try
             {
-                events = eventDAO.GetEvents();
+                events = eventDAO.GetEvents(id);
                 return Ok(events);
             }
             catch (SqlException ex)
@@ -39,13 +40,13 @@ namespace Capstone.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<bool> GetUserEvents(int id)
+        public ActionResult<List<Event>> GetUserEvents(int id)
         {
-            bool result = false;
+            List<Event> events = new List<Event>();
             try
             {
-                result = eventDAO.GetUserEvents(id);
-                return Ok();
+                events = eventDAO.GetUserEvents(id);
+                return Ok(events);
             }
             catch (SqlException ex)
             {

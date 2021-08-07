@@ -12,5 +12,8 @@ export default{
     },
     logGoal(goal){
         return axios.put(path, goal)
+    },
+    updateHistoryLog(updateHistoryLog, id){
+        return axios.post(path + "/"+ id, updateHistoryLog)
     }
 }

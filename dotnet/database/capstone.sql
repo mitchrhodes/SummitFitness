@@ -22,7 +22,7 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	salt varchar(200) NOT NULL,
 	user_role varchar(50) NOT NULL
-	CONSTRAINT PK_user PRIMARY KEY (user_id)
+	CONSTRAINT PK_users PRIMARY KEY (user_id)
 )
 
 CREATE TABLE events (
@@ -51,7 +51,19 @@ CREATE TABLE user_events(
 	user_id int NOT NULL, 
 	time_progress int,
 	distance_progress int,
+	date_time datetime,
 	CONSTRAINT pk_user_events_event_id_user_id PRIMARY KEY (event_id, user_id)
+)
+
+CREATE TABLE user_log(
+	user_log_entry_id int IDENTITY(1,1),
+	date_time datetime,
+	user_id int,
+	event_id int,
+	goal_id int,
+	time_progress int,
+	distance_progress int,
+	CONSTRAINT PK_user_log PRIMARY KEY (user_log_entry_id)
 )
 
 --populate default data
@@ -74,5 +86,8 @@ REFERENCES users(user_id)
 
 ALTER TABLE user_events ADD FOREIGN KEY(event_id)
 REFERENCES events(event_id)
+
+ALTER TABLE user_log ADD FOREIGN KEY (user_id)
+REFERENCES users(user_id)
 
 GO

@@ -4,7 +4,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col" >Goal ID</th>
+          <th scope="col">Goal ID</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
           <th scope="col">Type</th>
@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr v-for="goal in goals" v-bind:key="goal.name">
-          <td>{{goal.goalId}}</td>
+          <td>{{ goal.goalId }}</td>
           <td>{{ goal.name }}</td>
           <td>{{ goal.description }}</td>
           <td>{{ goal.type }}</td>
@@ -24,14 +24,22 @@
           <td>{{ goal.distance }}</td>
           <td>{{ goal.distanceProgress }}</td>
           <td>
-            <a class="btn btn-success" v-on:click="isAddProgress = true">Add Progress</a>
+            <a class="btn btn-success" v-on:click="isAddProgress = true"
+              >Add Progress</a
+            >
           </td>
           <td>
-          <form v-show="isAddProgress" @submit.prevent="logGoal(goal.goalId)">
-            <label for="progress">Progress Towards Goal</label>
-            <input type="number" id="progress" v-model="updateProgress.distanceProgress"/>
-            <button class="btn btn-primary btn-block" type="submit">Update Progress</button>
-          </form>
+            <form v-show="isAddProgress" @submit.prevent="logGoal(goal.goalId)">
+              <label for="progress">Progress Towards Goal</label>
+              <input
+                type="number"
+                id="progress"
+                v-model="updateProgress.distanceProgress"
+              />
+              <button class="btn btn-primary btn-block" type="submit">
+                Update Progress
+              </button>
+            </form>
           </td>
         </tr>
       </tbody>
@@ -140,10 +148,15 @@ export default {
         timeProgress: "",
       },
       updateProgress: {
-        goalId:"",
+        goalId: "",
         distanceProgress: 0,
       },
-      
+      updateHistoryLog: {
+        goalId: "",
+        userId: "",
+        dateTime: "",
+        distanceProgress: "",
+      },
     };
   },
   created() {
@@ -168,23 +181,33 @@ export default {
       this.goal = {};
     },
 
-   logGoal(id) {
-     this.updateProgress.goalId = id;
-     goalService
-     .logGoal(this.updateProgress)
-     .then((response) => {
+    logGoal(id) {
+      this.updateProgress.goalId = id;
+      goalService
+        .logGoal(this.updateProgress)
+        .then((response) => {
           console.log(response.status);
         })
         .catch((error) => {
           console.log(error.response);
         });
-        this.updateProgress = {};
-        this.isAddProgress = false;
-        this.$router.go();
-      
-   }
-
-  }
+      this.updateProgress = {};
+      this.isAddProgress = false;
+      this.$router.go();
+    },
+    addUpdateToHistoryLog(id) {
+      (this.updateHistoryLog.goalId = id),
+        (this.updateHistoryLog.userId = this.$store.state.user.userId),
+        goalService
+          .updateHistoryLog(this.updateHistoryLog, id)
+          .then((response) => {
+            console.log(response.status);
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
+    },
+  },
 };
 </script>
 

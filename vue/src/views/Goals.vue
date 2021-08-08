@@ -1,8 +1,29 @@
 <template>
   <div>
-    <h1>GOALS</h1>
-<!-- Added alert to progress updated, this refreshes the page when closed out so progress updates on screen-->
-          <div class="alert alert-success mx-4" role="alert" v-show="isProgressUpdated">
+    <div
+      class="p-5 text-center bg-image img-fluid img-responsive"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dHJla2tpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80');
+        background-size: cover;
+        object-fit: contain;
+        height: 300px;
+        max-width: 100%;
+        margin-top: 58px;
+      "
+    >
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-black">
+          <h1 class="mb-3">Goals</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Added alert to progress updated, this refreshes the page when closed out so progress updates on screen-->
+    <div
+      class="alert alert-success mx-4"
+      role="alert"
+      v-show="isProgressUpdated"
+    >
       Progress has been updated!
       <button
         type="button"

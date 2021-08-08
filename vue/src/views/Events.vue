@@ -1,14 +1,28 @@
 <template>
   <div>
-    <h1>EVENTS</h1>
+    <div
+      class="p-5 text-center bg-image"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1512588571475-d3791d9ffecc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80');
+        height: 300px;
+        max-width: 100%;
+        margin-top: 58px;
+      "
+    >
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white">
+          <h1 class="mb-3">Events</h1>
+        </div>
+      </div>
+    </div>
     <!-- added alert for event sign up -->
-     <div class="alert alert-success mx-4" role="alert" v-show="isEventSignedUp">
+    <div class="alert alert-success mx-4" role="alert" v-show="isEventSignedUp">
       You are signed up for this event!
       <button
         type="button"
         class="close btn bg-transparent text-right"
         data-dismiss="alert"
-        aria-label="Close"       
+        aria-label="Close"
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -31,13 +45,10 @@
           <td>{{ userEvent.name }}</td>
           <td>{{ userEvent.description }}</td>
           <td>{{ userEvent.type }}</td>
-          <td>{{ userEvent.duration }}</td>  
+          <td>{{ userEvent.duration }}</td>
           <td>
-            <a class="btn btn-success" 
-              >Add Progress</a
-            >
-          </td>      
-        
+            <a class="btn btn-success">Add Progress</a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -59,7 +70,7 @@
           <td>{{ event.name }}</td>
           <td>{{ event.description }}</td>
           <td>{{ event.type }}</td>
-          <td>{{ event.duration }}</td>         
+          <td>{{ event.duration }}</td>
           <td>
             <a class="btn btn-success" v-on:click="SignUp(event.eventId)"
               >Sign Up For Event</a
@@ -72,7 +83,7 @@
 </template>
 
 <script>
-import eventService from "../services/EventService"
+import eventService from "../services/EventService";
 export default {
   name: "events",
   data() {
@@ -101,8 +112,7 @@ export default {
         userId: 0,
       },
       isEventSignedUp: false,
-      
-  }
+    };
   },
   created() {
     this.userId.userId = this.$store.state.user.userId;
@@ -125,9 +135,8 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
-        this.isEventSignedUp = true;
-        
-    },       
+      this.isEventSignedUp = true;
+    },
   },
 };
 </script>

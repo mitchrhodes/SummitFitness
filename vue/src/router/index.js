@@ -10,6 +10,7 @@ import ChangePassword from '../views/ChangePassword.vue'
 import Admin from '../views/Admin.vue'
 import Goals from '../views/Goals.vue'
 import Events from '../views/Events.vue'
+import GetHistory from '../views/GetHistory.vue'
 
 Vue.use(Router)
 
@@ -46,6 +47,14 @@ const router = new Router({
       path: "/events",
       name: "events",
       component: Events,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/history",
+      name: "history",
+      component: GetHistory,
       meta: {
         requiresAuth: true
       }

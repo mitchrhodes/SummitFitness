@@ -10,10 +10,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="userEvent in userEvents" v-bind:key="userEvent.name">
-          <td>{{ userEvent.name }}</td>
-          <td>{{ userEvent.description }}</td>
-          <td>{{ userEvent.type }}</td>
+        <tr v-for="eventActivity in eventHistory" v-bind:key="eventActivity.name">
+          <td>{{ eventActivity.eventName }}</td>
+          <td>{{ eventActivity.date }}</td>
+          <td>{{ eventActivity.distanceProgress }}</td>
         </tr>
       </tbody>
     </table>
@@ -27,10 +27,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="userEvent in userEvents" v-bind:key="userEvent.name">
-          <td>{{ userEvent.name }}</td>
-          <td>{{ userEvent.description }}</td>
-          <td>{{ userEvent.type }}</td>
+        <tr v-for="goalActivity in goalHistory" v-bind:key="goalActivity.name">
+          <td>{{ goalActivity.goalName }}</td>
+          <td>{{ goalActivity.date }}</td>
+          <td>{{ goalActivity.distanceProgress }}</td>
         </tr>
       </tbody>
     </table>
@@ -63,10 +63,10 @@ data() {
 
 created() {
     historyService.getEventHistory().then((response) => {
-      this.history = response.data;
+      this.eventHistory = response.data;
     });
     historyService.getGoalHistory().then((response) => {
-      this.history = response.data;
+      this.goalHistory = response.data;
     });
   },
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Capstone.DAO.Interfaces
 {
-    interface IHistoryDAO
+    public interface IHistoryDAO
     {
-        public List<Goal> GetGoals();
-        public List<Event> GetEvents();
+        public List<Goal> GetGoals(int id);
+        public List<Event> GetEvents(int id);
     }
 }

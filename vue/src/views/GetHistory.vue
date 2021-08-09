@@ -1,5 +1,8 @@
 <template>
   <div>
+    <br>
+    <br>
+    <br>
     <h1>Event History</h1>
     <table class="table table-hover">
       <thead>
@@ -11,7 +14,7 @@
       </thead>
       <tbody>
         <tr v-for="eventActivity in eventHistory" v-bind:key="eventActivity.name">
-          <td>{{ eventActivity.eventName }}</td>
+          <td>{{ eventActivity.name }}</td>
           <td>{{ eventActivity.date }}</td>
           <td>{{ eventActivity.distanceProgress }}</td>
         </tr>
@@ -28,7 +31,7 @@
       </thead>
       <tbody>
         <tr v-for="goalActivity in goalHistory" v-bind:key="goalActivity.name">
-          <td>{{ goalActivity.goalName }}</td>
+          <td>{{ goalActivity.name }}</td>
           <td>{{ goalActivity.date }}</td>
           <td>{{ goalActivity.distanceProgress }}</td>
         </tr>

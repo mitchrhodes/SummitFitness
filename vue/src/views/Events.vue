@@ -72,6 +72,7 @@
           <th scope="col">Duration</th>
           <th scope="col">Progress</th>
           <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -90,6 +91,16 @@
                   (updateEventProgress.eventId = userEvent.eventId)
               "
               >Add Progress</a
+            >
+          </td>
+          <td>
+            <a
+              class="btn btn-success"
+              v-on:click="
+                (isAddProgress = true),
+                  (updateEventProgress.eventId = userEvent.eventId)
+              "
+              >View Leaderboard</a
             >
           </td>
           <td></td>

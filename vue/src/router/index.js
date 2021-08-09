@@ -11,6 +11,7 @@ import Admin from '../views/Admin.vue'
 import Goals from '../views/Goals.vue'
 import Events from '../views/Events.vue'
 import GetHistory from '../views/GetHistory.vue'
+import Leaderboard from '../views/Leaderboard.vue'
 
 Vue.use(Router)
 
@@ -98,7 +99,17 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: "/leaderboard",
+      name: "leaderboard",
+      component: Leaderboard,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    
+
   ]
 })
 

@@ -239,19 +239,19 @@ export default {
       this.$router.go();
     },
     //added update to history method
-    addUpdateToHistoryLog(id) {
-      this.updateHistoryLog.goalId = id;
-      this.updateHistoryLog.userId = this.$store.state.user.userId;
-      this.updateHistoryLog.distanceProgress = this.updateProgress.distanceProgress;
-      goalService
-        .updateHistoryLog(this.updateHistoryLog, id)
-        .then((response) => {
-          console.log(response.status);
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
-    },
+    // addUpdateToHistoryLog(id) {
+    //   this.updateHistoryLog.goalId = id;
+    //   this.updateHistoryLog.userId = this.$store.state.user.userId;
+    //   this.updateHistoryLog.distanceProgress = this.updateProgress.distanceProgress;
+    //   goalService
+    //     .updateHistoryLog(this.updateHistoryLog, id)
+    //     .then((response) => {
+    //       console.log(response.status);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error.response);
+    //     });
+    // },
   },
 };
 </script>

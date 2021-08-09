@@ -103,6 +103,8 @@ namespace Capstone.DAO
                     cmd.ExecuteNonQuery();
                 }
 
+                AddHistoryLog(goal);
+
                 return true;
             }
             catch (SqlException ex)
@@ -111,32 +113,35 @@ namespace Capstone.DAO
             }
         }
 
-        //public bool AddHistoryLog(HistoryLog historyLog)
-        //{
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(connectionString))
-        //        {
-        //            conn.Open();
+        public bool AddHistoryLog(Goal goal)
+        {
+           
+            goal.Date = DateTime.Now;
 
-        //            SqlCommand cmd = new SqlCommand("INSERT INTO user_log (user_id, goal_id, distance_progress, date_time) VALUES (@user_id, @goal_id, @distance_progress, @date_time)", conn);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
 
-        //            cmd.Parameters.AddWithValue("@user_id", historyLog.UserId);
-        //            cmd.Parameters.AddWithValue("@goal_id", historyLog.GoalId);
-        //            cmd.Parameters.AddWithValue("@distance_progress", historyLog.DistanceProgress);
-        //            cmd.Parameters.AddWithValue("@date_time", historyLog.Date);
-                  
+                    SqlCommand cmd = new SqlCommand("INSERT INTO user_log (user_id, goal_id, distance_progress, date_time) VALUES (@user_id, @goal_id, @distance_progress, @date_time)", conn);
 
-        //            cmd.ExecuteNonQuery();
-        //        }
-        //        return true;
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        return false;
-        //    }
+                    cmd.Parameters.AddWithValue("@user_id", goal.UserId);
+                    cmd.Parameters.AddWithValue("@goal_id", goal.GoalId);
+                    cmd.Parameters.AddWithValue("@distance_progress", goal.DistanceProgress);
+                    cmd.Parameters.AddWithValue("@date_time", goal.Date);
 
-       // }
+
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                return false;
+            }
+
+        }
 
     }
 }

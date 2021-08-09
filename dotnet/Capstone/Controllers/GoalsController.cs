@@ -55,7 +55,9 @@ namespace Capstone.Controllers
 
         public ActionResult<bool> LogGoal(Goal goal)
         {
-         
+            int id = int.Parse(this.User.FindFirst("sub").Value);
+            goal.UserId = id;
+
             bool result = false;
             try
             {

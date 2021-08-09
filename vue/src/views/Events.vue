@@ -55,7 +55,7 @@
             <form
               v-show="isAddProgress"
               @submit.prevent="
-                logEvent(userEvent.eventId), (isAddProgress = false)
+                logEventProgress(userEvent.eventId), (isAddProgress = false)
               "
             >
               <label for="progress">Progress Towards Event Completion</label>
@@ -165,8 +165,7 @@ export default {
         });
       this.isEventSignedUp = true;
     },
-  },
-   logEvent(id) {
+    logEventProgress(id) {
       this.updateEventProgress.eventId = id;
       eventService
         .logEvent(this.updateEventProgress)
@@ -180,6 +179,8 @@ export default {
       this.isAddProgress = false;
       this.isProgressUpdated = true;
     },
+  },
+   
 };
 </script>
 

@@ -50,7 +50,7 @@ CREATE TABLE user_events(
 	event_id int NOT NULL,
 	user_id int NOT NULL, 
 	time_progress int,
-	distance_progress int,
+	distance_progress int DEFAULT 0,
 	date_time datetime,
 	CONSTRAINT pk_user_events_event_id_user_id PRIMARY KEY (event_id, user_id)
 )

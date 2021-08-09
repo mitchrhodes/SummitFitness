@@ -71,6 +71,9 @@ namespace Capstone.Controllers
         [HttpPut]
         public ActionResult<bool> AddProgressToEvent (UserEvent userEvent)
         {
+
+            int id = int.Parse(this.User.FindFirst("sub").Value);
+            userEvent.UserId = id;
             bool result = false;
             try
             {

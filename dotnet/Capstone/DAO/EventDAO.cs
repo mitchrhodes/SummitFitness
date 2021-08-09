@@ -128,6 +128,64 @@ namespace Capstone.DAO
                 return false;
             }
         }
+
+        public bool AddProgressToEvent(UserEvent userEvent)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("UPDATE user_events SET  distance_progress =(SELECT distance_progress FROM user_events WHERE event_id = @event_id AND user_id = @user_id) + @distance_progress WHERE event_id = @event_id AND user_id = @user_id", conn);
+
+                    cmd.Parameters.AddWithValue("@distance_progress", userEvent.DistanceProgress);
+                    cmd.Parameters.AddWithValue("@event_id", userEvent.EventId);
+                    cmd.Parameters.AddWithValue("@user_id", userEvent.UserId);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                AddHistoryLogEvent(userEvent);
+
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                return false;
+            }
+        }
+
+        public bool AddHistoryLogEvent(UserEvent userEvent)
+        {
+
+            userEvent.DateTime = DateTime.Now;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO user_log (user_id, event_id, distance_progress, date_time) VALUES (@user_id, @event_id, @distance_progress, @date_time)", conn);
+
+                    cmd.Parameters.AddWithValue("@user_id", userEvent.UserId);
+                    cmd.Parameters.AddWithValue("@event_id", userEvent.EventId);
+                    cmd.Parameters.AddWithValue("@distance_progress", userEvent.DistanceProgress);
+                    cmd.Parameters.AddWithValue("@date_time", userEvent.DateTime);
+
+
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                return false;
+            }
+
+        }
+
     }
 }
 

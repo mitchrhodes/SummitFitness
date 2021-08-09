@@ -35,6 +35,22 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+    <br>
+    <form
+      v-show="isAddProgress"
+      @submit.prevent="logGoal(), (isAddProgress = false)"
+    >
+      <label for="progress">Progress Towards Goal Completion: </label>
+      <input
+        type="number"
+        id="progress"
+        v-model="updateProgress.distanceProgress"
+      />
+      <button class="btn btn-primary btn-block" type="submit">
+        Update Progress
+      </button>
+    </form>
+    <br>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -58,25 +74,13 @@
           <td>{{ goal.distance }}</td>
           <td>{{ goal.distanceProgress }}</td>
           <td>
-            <a class="btn btn-success" v-on:click="isAddProgress = true"
+            <a
+              class="btn btn-success"
+              v-on:click="
+                (isAddProgress = true), (updateProgress.goalId = goal.goalId)
+              "
               >Add Progress</a
             >
-          </td>
-          <td>
-            <form
-              v-show="isAddProgress"
-              @submit.prevent="logGoal(goal.goalId), (isAddProgress = false)"
-            >
-              <label for="progress">Progress Towards Goal</label>
-              <input
-                type="number"
-                id="progress"
-                v-model="updateProgress.distanceProgress"
-              />
-              <button class="btn btn-primary btn-block" type="submit">
-                Update Progress
-              </button>
-            </form>
           </td>
         </tr>
       </tbody>
@@ -219,8 +223,7 @@ export default {
       this.goal = {};
     },
 
-    logGoal(id) {
-      this.updateProgress.goalId = id;
+    logGoal() {
       goalService
         .logGoal(this.updateProgress)
         .then((response) => {

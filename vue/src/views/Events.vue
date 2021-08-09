@@ -27,6 +27,39 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+    <div
+      class="alert alert-success mx-4"
+      role="alert"
+      v-show="isProgressUpdated"
+    >
+      Progress has been updated!
+      <button
+        type="button"
+        class="close btn bg-transparent text-right"
+        data-dismiss="alert"
+        aria-label="Close"
+        v-on:click="(isProgressUpdated = false), refreshPage()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <br />
+    <form
+      
+      v-show="isAddProgress"
+      @submit.prevent="logEventProgress(), (isAddProgress = false)"
+    >
+      <label for="progress">Progress Towards Event Completion: </label>
+      <input
+        type="number"
+        id="progress"
+        v-model="updateEventProgress.distanceProgress"
+      />
+      <button class="btn btn-primary btn-block" type="submit">
+        Update Progress
+      </button>
+    </form>
+    <br />
 
     <h1>Your Registered Events</h1>
     <table class="table table-hover">
@@ -37,7 +70,7 @@
           <th scope="col">Description</th>
           <th scope="col">Type</th>
           <th scope="col">Duration</th>
-          <th scope="col"></th>
+          <th scope="col">Progress</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -48,27 +81,18 @@
           <td>{{ userEvent.description }}</td>
           <td>{{ userEvent.type }}</td>
           <td>{{ userEvent.duration }}</td>
+          <td>{{ userEvent.distanceProgress }}</td>
           <td>
-            <a class="btn btn-success" v-on:click="isAddProgress = true">Add Progress</a>
-          </td>
-          <td>
-            <form
-              v-show="isAddProgress"
-              @submit.prevent="
-                logEventProgress(userEvent.eventId), (isAddProgress = false)
+            <a
+              class="btn btn-success"
+              v-on:click="
+                (isAddProgress = true),
+                  (updateEventProgress.eventId = userEvent.eventId)
               "
+              >Add Progress</a
             >
-              <label for="progress">Progress Towards Event Completion</label>
-              <input
-                type="number"
-                id="progress"
-                v-model="updateEventProgress.distanceProgress"
-              />
-              <button class="btn btn-primary btn-block" type="submit" >
-                Update Progress
-              </button>
-            </form>
           </td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -125,6 +149,7 @@ export default {
         description: "",
         type: "",
         duration: "",
+        distanceProgress: "",
       },
       signUpInfo: {
         eventId: "",
@@ -139,7 +164,6 @@ export default {
       },
       isEventSignedUp: false,
       isProgressUpdated: false,
-
     };
   },
   created() {
@@ -165,8 +189,7 @@ export default {
         });
       this.isEventSignedUp = true;
     },
-    logEventProgress(id) {
-      this.updateEventProgress.eventId = id;
+    logEventProgress() {
       eventService
         .logEvent(this.updateEventProgress)
         .then((response) => {
@@ -179,8 +202,10 @@ export default {
       this.isAddProgress = false;
       this.isProgressUpdated = true;
     },
+    refreshPage() {
+      this.$router.go();
+    },
   },
-   
 };
 </script>
 

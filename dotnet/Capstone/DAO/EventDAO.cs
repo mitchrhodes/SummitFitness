@@ -82,7 +82,7 @@ namespace Capstone.DAO
                 {
 
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT events.event_id, events.name, events.type, events.description, events.period_in_days " + 
+                    SqlCommand cmd = new SqlCommand("SELECT events.event_id, events.name, events.type, events.description, events.period_in_days, user_events.distance_progress " + 
                         "FROM events JOIN user_events ON user_events.event_id = events.event_id WHERE user_id = @userId;", conn);
                     cmd.Parameters.AddWithValue("@userId", id);
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -94,6 +94,7 @@ namespace Capstone.DAO
                         e.Type = Convert.ToString(reader["type"]);
                         e.Description = Convert.ToString(reader["description"]);
                         e.Duration = Convert.ToString(reader["period_in_days"]);
+                        e.DistanceProgress = Convert.ToString(reader["distance_progress"]);
                         events.Add(e);
 
                     }

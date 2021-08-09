@@ -12,6 +12,7 @@ namespace Capstone.Models
         public string Type { get; set; }
         public string Duration { get; set; }
         public int EventId { get; set; }
+        public string DistanceProgress { get; set; }
 
 
     }

@@ -1,4 +1,5 @@
-﻿using Capstone.Models;
+﻿using Capstone.DAO.Interfaces;
+using Capstone.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,46 +13,50 @@ namespace Capstone.Controllers
     [ApiController]
     public class LeaderBoardController : ControllerBase
     {
-  
-            private readonly ILeaderBoardDAO leaderBoardDAO;
 
-            public LeaderBoardController(ILeaderBoardDAO _leaderBoardDAO)
+        private readonly ILeaderBoardDAO leaderBoardDAO;
+        private int tempEventId;
+
+        public LeaderBoardController(ILeaderBoardDAO _leaderBoardDAO)
+        {
+            leaderBoardDAO = _leaderBoardDAO;
+        }
+    
+        [HttpGet("{eventId}")]
+        public ActionResult<List<EventLeaderBoard>> GetLeader(int eventId)
+        {
+            tempEventId = eventId;
+
+            List<EventLeaderBoard> events = new List<EventLeaderBoard>();
+            try
             {
-                ILeaderBoardDAO = _leaderbaordDAO;
+                events = leaderBoardDAO.GetLeader(eventId);
+                return Ok(events);
             }
-
-
-            [HttpGet]
-            public ActionResult<List<Event>> LeaderComparison() 
+            catch (SqlException ex)
             {
-                int userId = int.Parse(this.User.FindFirst("sub").Value);
-
-                List<Event> events = new List<Event>();
-                try
-                {
-                    events = leaderBoardDAO.GetEvents(userId);
-                    return Ok(events);
-                }
-                catch (SqlException ex)
-                {
-                    return NotFound("Unable to communicate with database. Reporting this error: " + ex.Message);
-                }
-            }
-
-            [HttpGet("{eventId}")]
-            public ActionResult<List<Event>> GetLeader(int eventId)
-            {
-                List<Event> events = new List<Event>();
-                try
-                {
-                    events = leaderBoardDAO.GetLeaders(eventId);
-                    return Ok(events);
-                }
-                catch (SqlException ex)
-                {
-                    return NotFound("Unable to communicate with database. Reporting this error: " + ex.Message);
-                }
+                return NotFound("Unable to communicate with database. Reporting this error: " + ex.Message);
             }
         }
+
+        [HttpGet]
+        public ActionResult<List<EventLeaderBoard>> LeaderComparison(int eventId)
+        {
+            int userId = int.Parse(this.User.FindFirst("sub").Value);
+
+            List<EventLeaderBoard> events = new List<EventLeaderBoard>();
+            try
+            {
+                events = leaderBoardDAO.LeaderComparison(eventId, userId);
+                return Ok(events);
+            }
+            catch (SqlException ex)
+            {
+                return NotFound("Unable to communicate with database. Reporting this error: " + ex.Message);
+            }
+        }
+
+
     }
+}
 

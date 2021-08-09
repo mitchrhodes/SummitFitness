@@ -9,7 +9,7 @@ namespace Capstone.DAO.Interfaces
     public interface ILeaderBoardDAO
     {
 
-        public List<Event> GetLeader(int eventId);
-        public List<Event> LeaderComparison(int userId);
+        public List<EventLeaderBoard> GetLeader(int eventId);
+        public List<EventLeaderBoard> LeaderComparison(int eventId, int userId);
     }
 }

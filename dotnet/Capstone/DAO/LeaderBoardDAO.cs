@@ -1,52 +1,88 @@
-﻿using System;
+﻿using Capstone.DAO.Interfaces;
+using Capstone.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
 
 namespace Capstone.DAO
 {
-    public class LeaderBoardDAO: ILeaderBoardDAO
+    public class LeaderBoardDAO : ILeaderBoardDAO
     {
-       
-            private readonly string connectionString;
-            public LeaderBoardDAO(string dbConnectionString)
-            {
-                connectionString = dbConnectionString;
-            }
 
-            public List<Event> GetEvents(int id)
-            {
-                List<Event> events = new List<Event>();
+        private readonly string connectionString;
+        public LeaderBoardDAO(string dbConnectionString)
+        {
+            connectionString = dbConnectionString;
+        }
 
-                try
+        public List<EventLeaderBoard> GetLeader(int id)
+        {
+            List<EventLeaderBoard> eventLeaders = new List<EventLeaderBoard>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT TOP 5 user_events.distance_progress, events.name, users.username " +
+                        "FROM user_events JOIN users ON users.user_id = user_events.user_id " +
+                        "JOIN events ON events.event_id = user_events.event_id WHERE events.even_id = @eventId" +
+                        "ORDER BY user_events.distance_progress DESC", conn);
+                    cmd.Parameters.AddWithValue("@eventId", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-
-                        conn.Open();
-                        SqlCommand cmd = new SqlCommand("SELECT user_log.date_time, events.name, user_log.distance_progress FROM user_log " +
-                            "JOIN user_events ON user_log.user_id = user_events.user_id JOIN events ON user_events.event_id = events.event_id " +
-                            "WHERE user_log.user_id = @userId AND user_log.event_id IS NOT NULL", conn);
-                        cmd.Parameters.AddWithValue("@userId", id);
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Event e = new Event();
-                            e.Name = Convert.ToString(reader["name"]);
-                            e.DistanceProgress = Convert.ToString(reader["distance_progress"]);
-                            e.Date = Convert.ToDateTime(reader["date_time"]);
-                            events.Add(e);
-
-                        }
+                        EventLeaderBoard leaders = new EventLeaderBoard();
+                        leaders.EventName = Convert.ToString(reader["name"]);
+                        leaders.DistanceProgress = Convert.ToInt32(reader["distance_progress"]);
+                        leaders.UserName = Convert.ToString(reader["username"]);
+                        eventLeaders.Add(leaders);
                     }
                 }
-                catch (Exception ex)
-                {
-                    events = new List<Event>();
-                }
-                return events;
             }
+            catch (Exception ex)
+            {
+                eventLeaders = new List<EventLeaderBoard>();
+            }
+            return eventLeaders;
+        }
 
+        public List<EventLeaderBoard> LeaderComparison(int eventId, int userId)
+        {
+            List<EventLeaderBoard> eventLeaders = new List<EventLeaderBoard>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT user_events.distance_progress, events.name, users.username FROM user_events " +
+                        "JOIN users ON users.user_id = user_events.user_id " +
+                        "JOIN events ON events.event_id = user_events.event_id " +
+                        "WHERE events.event_id = @eventId AND users.user_id = @user_id", conn);
+                    cmd.Parameters.AddWithValue("@eventId", eventId);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        EventLeaderBoard leaders = new EventLeaderBoard();
+                        leaders.EventName = Convert.ToString(reader["name"]);
+                        leaders.DistanceProgress = Convert.ToInt32(reader["distance_progress"]);
+                        leaders.UserName = Convert.ToString(reader["username"]);
+                        eventLeaders.Add(leaders);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                eventLeaders = new List<EventLeaderBoard>();
+            }
+            return eventLeaders;
         }
     }
+
+}
+

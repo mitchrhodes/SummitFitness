@@ -68,6 +68,19 @@ namespace Capstone.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [HttpPut]
+        public ActionResult<bool> AddProgressToEvent (UserEvent userEvent)
+        {
+            bool result = false;
+            try
+            {
+                result = eventDAO.AddProgressToEvent(userEvent);
+                return Ok(result);
+            }
+            catch (SqlException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

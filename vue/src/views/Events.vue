@@ -27,6 +27,8 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+
+    <h1>Your Registered Events</h1>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -47,11 +49,30 @@
           <td>{{ userEvent.type }}</td>
           <td>{{ userEvent.duration }}</td>
           <td>
-            <a class="btn btn-success">Add Progress</a>
+            <a class="btn btn-success" v-on:click="isAddProgress = true">Add Progress</a>
+          </td>
+          <td>
+            <form
+              v-show="isAddProgress"
+              @submit.prevent="
+                logEvent(userEvent.eventId), (isAddProgress = false)
+              "
+            >
+              <label for="progress">Progress Towards Event Completion</label>
+              <input
+                type="number"
+                id="progress"
+                v-model="updateEventProgress.distanceProgress"
+              />
+              <button class="btn btn-primary btn-block" type="submit" >
+                Update Progress
+              </button>
+            </form>
           </td>
         </tr>
       </tbody>
     </table>
+
     <table class="table table-hover">
       <thead>
         <tr>
@@ -88,6 +109,7 @@ export default {
   name: "events",
   data() {
     return {
+      isAddProgress: false,
       events: [],
       event: {
         eventId: "",
@@ -111,7 +133,13 @@ export default {
       userId: {
         userId: 0,
       },
+      updateEventProgress: {
+        eventId: 0,
+        distanceProgress: "",
+      },
       isEventSignedUp: false,
+      isProgressUpdated: false,
+
     };
   },
   created() {
@@ -138,6 +166,20 @@ export default {
       this.isEventSignedUp = true;
     },
   },
+   logEvent(id) {
+      this.updateEventProgress.eventId = id;
+      eventService
+        .logEvent(this.updateEventProgress)
+        .then((response) => {
+          console.log(response.status);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      this.updateEventProgress = {};
+      this.isAddProgress = false;
+      this.isProgressUpdated = true;
+    },
 };
 </script>
 

@@ -12,5 +12,8 @@ export default {
     },
     getUserEvents(id) {
         return axios.get(path + '/' + id)
-    }
+    },
+    logEvent(event){
+        return axios.put(path, event)
+    },
 }

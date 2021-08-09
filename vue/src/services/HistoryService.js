@@ -5,9 +5,12 @@ const path = "/history";
 export default{
    
   
-    getHistory(){
+    getEventHistory(){
         return axios.get(path)
     },
+    getGoalHistory(){
+        return axios.get(path + "/goal" )
+    }
    
     
 }

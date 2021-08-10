@@ -16,13 +16,27 @@
         <div class="collapse navbar-collapse" id="navbarExample01">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
-              <router-link class="nav-link" v-bind:to="{ name: 'home' }"
+              <router-link class="nav-link" v-bind:to="{ name: 'home' }"             
                 >Home</router-link
+              >
+            </li>
+            <li class="nav-item active">
+              <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-show="!isUser(this.$store.state.user)"
+                >Log In</router-link
+              >
+            </li>
+             <li class="nav-item active">
+              <router-link class="nav-link" v-bind:to="{ name: 'register' }" v-show="!isUser(this.$store.state.user)"
+                >Create Account</router-link
               >
             </li>
             <li class="nav-item">
               <router-link
                 class="nav-link"
+                v-show="                
+                  isAdmin(this.$store.state.user) ||
+                  isUser(this.$store.state.user)
+                "
                 v-bind:to="{ name: 'logout' }"
                 v-if="$store.state.token != ''"
                 >Logout</router-link
@@ -30,9 +44,47 @@
             </li>
             <li class="nav-item">
               <router-link
+                v-show="
+                  isAdmin(this.$store.state.user) ||
+                  isUser(this.$store.state.user)
+                "
                 v-bind:to="{ name: 'changePassword' }"
                 class="nav-link"
                 >Change Password</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link
+                v-show="
+                  isAdmin(this.$store.state.user) ||
+                  isUser(this.$store.state.user)
+                "
+                v-bind:to="{ name: 'goals' }"
+                class="nav-link"
+                >Goals</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link
+                v-show="
+                  isAdmin(this.$store.state.user) ||
+                  isUser(this.$store.state.user)
+                "
+                v-bind:to="{ name: 'events' }"
+                class="nav-link"
+                >Events</router-link
+              >
+            </li>
+
+            <li class="nav-item">
+              <router-link
+                v-show="
+                  isAdmin(this.$store.state.user) ||
+                  isUser(this.$store.state.user)
+                "
+                v-bind:to="{ name: 'history' }"
+                class="nav-link"
+                >History</router-link
               >
             </li>
             <li class="nav-item">
@@ -53,9 +105,20 @@
 </template>
 <script>
 export default {
+  data()  {
+    return {
+      isLoggedIn: false,
+    }
+  },
   methods: {
     isAdmin(user) {
-      if (user.role === "admin") {
+      if (user.role === "admin") {        
+        return true;
+      }
+      return false;
+    },
+    isUser(user) {
+      if (user.role === "user") {
         return true;
       }
       return false;

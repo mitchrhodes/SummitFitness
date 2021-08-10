@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <nav  class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -126,3 +127,11 @@ export default {
   },
 };
 </script>
+
+<style >
+#app {
+  background-color: #A4BDC5;
+}
+
+
+</style>

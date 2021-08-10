@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="admin">
     <br>
     <br>
     <br>
@@ -157,4 +157,7 @@ export default {
 </script>
 
 <style>
+#admin{
+  
+}
 </style>

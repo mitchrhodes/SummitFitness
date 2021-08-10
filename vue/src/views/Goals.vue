@@ -75,7 +75,7 @@
           <td>{{ goal.distanceProgress }}</td>
           <td>
             <a
-              class="btn btn-success"
+              class="btn "
               v-on:click="
                 (isAddProgress = true), (updateProgress.goalId = goal.goalId)
               "
@@ -87,7 +87,7 @@
     </table>
     <div class="text-center">
       <a
-        class="btn btn-primary my-3"
+        class="btn my-3"
         v-on:click="(isAddNewForm = true), (isGoalCreated = false)"
         >Add Goal</a
       >
@@ -158,7 +158,7 @@
         </div>
       </div>
       <div class="text-center my-3">
-        <button class="btn btn-primary btn-block" type="submit">
+        <button class="btn" type="submit">
           Add Goal
         </button>
       </div>
@@ -260,4 +260,8 @@ export default {
 </script>
 
 <style>
+.btn {
+  background-color: #489CA5 !important;
+  outline-color: #2D474D !important;
+}
 </style>

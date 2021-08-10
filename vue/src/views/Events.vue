@@ -54,7 +54,7 @@
         id="progress"
         v-model="updateEventProgress.distanceProgress"
       />
-      <button class="btn btn-primary btn-block" type="submit">
+      <button class="btn " type="submit">
         Update Progress
       </button>
     </form>
@@ -84,7 +84,7 @@
           <td>{{ userEvent.distanceProgress }}</td>
           <td>
             <a
-              class="btn btn-success"
+              class="btn"
               v-on:click="
                 (isAddProgress = true),
                   (updateEventProgress.eventId = userEvent.eventId)
@@ -93,7 +93,7 @@
             >
           </td>
           <td>
-            <a class="btn btn-success"><router-link class='btn btn-success' v-bind:to='{ name: "leaderboard", params:{eventId: userEvent.eventId }}'>View Leaderboard</router-link></a>
+            <router-link class='btn ' v-bind:to='{ name: "leaderboard", params:{eventId: userEvent.eventId }}'>View Leaderboard</router-link>
           </td>
           <td></td>
         </tr>
@@ -120,7 +120,7 @@
           <td>{{ event.type }}</td>
           <td>{{ event.duration }}</td>
           <td>
-            <a class="btn btn-success" v-on:click="SignUp(event.eventId)"
+            <a class="btn" v-on:click="SignUp(event.eventId)"
               >Sign Up For Event</a
             >
           </td>
@@ -213,4 +213,9 @@ export default {
 </script>
 
 <style>
+.btn {
+  background-color: #489CA5 !important;
+  outline-color: #2D474D !important;
+  color: white;
+}
 </style>

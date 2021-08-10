@@ -19,12 +19,11 @@
     <br />
     <br />
     <br />
-
     <div class="text-center">
-      <router-link :to="{ name: 'register' }" class="btn btn-primary mx-3"
+      <router-link :to="{ name: 'register' }" class="btn mx-3"
         >Create Account</router-link
       >
-      <router-link :to="{ name: 'login' }" class="btn btn-primary mx-3"
+      <router-link :to="{ name: 'login' }" class="btn mx-3"
         >Log In</router-link
       >
       <br>
@@ -43,7 +42,10 @@
   margin-left: auto;
   margin-right: auto;
   width: 90%;
-
+}
+.btn {
+  background-color: #489CA5 !important;
+  outline-color: #2D474D !important;
 }
 
 </style>

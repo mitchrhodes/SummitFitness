@@ -1,5 +1,10 @@
 <template>
   <div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h4 class="text-center">Change Password</h4>
     <div class="alert alert-success" role="alert" v-show="isPasswordChanged">Password Changed!</div>
     <form @submit.prevent="sendEmail" class="mx-4">
       <div class="row">
@@ -85,4 +90,9 @@ export default {
 </script>
 
 <style>
+
+.btn {
+  background-color: #489CA5 !important;
+  outline-color: #2D474D !important;
+}
 </style>

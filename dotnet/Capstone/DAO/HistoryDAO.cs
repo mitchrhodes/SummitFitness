@@ -24,21 +24,31 @@ namespace Capstone.DAO
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT user_log.date_time, events.name, user_log.distance_progress FROM user_log " +
-                        "JOIN user_events ON user_log.user_id = user_events.user_id JOIN events ON user_events.event_id = events.event_id " +
-                        "WHERE user_log.user_id = @userId AND user_log.event_id IS NOT NULL", conn);
-                    cmd.Parameters.AddWithValue("@userId", id);
+                    SqlCommand cmd = new SqlCommand("SELECT date_time, distance_progress, event_id FROM user_log WHERE user_id = @user_id AND event_id IS NOT NULL;", conn);
+                    cmd.Parameters.AddWithValue("@user_id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         Event e = new Event();
-                        e.Name = Convert.ToString(reader["name"]);
+                        e.EventId = Convert.ToInt32(reader["event_id"]);
                         e.DistanceProgress = Convert.ToString(reader["distance_progress"]);
                         e.Date = Convert.ToDateTime(reader["date_time"]);
                         events.Add(e);
-
+                    }
+                }
+                foreach (Event e in events)
+                {
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand("SELECT name FROM events WHERE event_id = @event_id", conn);
+                        cmd.Parameters.AddWithValue("@event_id", e.EventId);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            e.Name = Convert.ToString(reader["name"]);
+                        }
                     }
                 }
             }
@@ -57,20 +67,31 @@ namespace Capstone.DAO
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT user_log.date_time, user_log.distance_progress, goals.goal_name " +
-                        "FROM user_log JOIN goals ON user_log.user_id = goals.user_id WHERE user_log.user_id = @userId", conn);
-                    cmd.Parameters.AddWithValue("@userId", id);
+                    SqlCommand cmd = new SqlCommand("SELECT date_time, distance_progress, goal_id FROM user_log WHERE user_id = @user_id AND goal_id IS NOT NULL;", conn);
+                    cmd.Parameters.AddWithValue("@user_id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         Goal goal = new Goal();
-                        goal.Name = Convert.ToString(reader["goal_name"]);
+                        goal.GoalId = Convert.ToInt32(reader["goal_id"]);
                         goal.DistanceProgress = Convert.ToString(reader["distance_progress"]);
                         goal.Date = Convert.ToDateTime(reader["date_time"]);
                         goals.Add(goal);
-
+                    }
+                }
+                foreach (Goal goal in goals)
+                {
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand("SELECT goal_name FROM goals WHERE goal_id = @goal_id", conn);
+                        cmd.Parameters.AddWithValue("@goal_id", goal.GoalId);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            goal.Name = Convert.ToString(reader["goal_name"]);
+                        }
                     }
                 }
             }

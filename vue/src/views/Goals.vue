@@ -93,7 +93,7 @@
       >
     </div>
     <div class="alert alert-success mx-4" role="alert" v-show="isGoalCreated">
-      Event Created!
+      Goal Added!
       <button
         type="button"
         class="close btn bg-transparent text-right"
@@ -159,7 +159,7 @@
       </div>
       <div class="text-center my-3">
         <button class="btn btn-primary btn-block" type="submit">
-          Create Event
+          Add Goal
         </button>
       </div>
     </form>

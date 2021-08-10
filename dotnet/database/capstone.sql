@@ -62,7 +62,7 @@ CREATE TABLE user_log(
 	event_id int,
 	goal_id int,
 	time_progress int,
-	distance_progress int,
+	distance_progress int DEFAULT 0,
 	CONSTRAINT PK_user_log PRIMARY KEY (user_log_entry_id)
 )
 

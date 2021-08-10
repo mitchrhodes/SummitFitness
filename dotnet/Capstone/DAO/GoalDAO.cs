@@ -116,7 +116,7 @@ namespace Capstone.DAO
         public bool AddHistoryLog(Goal goal)
         {
            
-            goal.Date = DateTime.Now;
+            goal.Date = DateTime.Now.ToShortDateString();
 
             try
             {

@@ -19,7 +19,7 @@ namespace Capstone.Models
         public string DistanceProgress { get; set; }
 
         public string TimeProgress { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
        
 
 

@@ -33,7 +33,8 @@ namespace Capstone.DAO
                         Event e = new Event();
                         e.EventId = Convert.ToInt32(reader["event_id"]);
                         e.DistanceProgress = Convert.ToString(reader["distance_progress"]);
-                        e.Date = Convert.ToDateTime(reader["date_time"]);
+                        e.Date = (Convert.ToDateTime(reader["date_time"])).ToShortDateString();
+                        
                         events.Add(e);
                     }
                 }
@@ -76,7 +77,7 @@ namespace Capstone.DAO
                         Goal goal = new Goal();
                         goal.GoalId = Convert.ToInt32(reader["goal_id"]);
                         goal.DistanceProgress = Convert.ToString(reader["distance_progress"]);
-                        goal.Date = Convert.ToDateTime(reader["date_time"]);
+                        goal.Date = (Convert.ToDateTime(reader["date_time"])).ToShortDateString();
                         goals.Add(goal);
                     }
                 }

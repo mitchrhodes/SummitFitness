@@ -59,7 +59,7 @@ namespace Capstone.DAO
                 {
 
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("  SELECT user_log.date_time, user_log.distance_progress, goals.goal_name " +
+                    SqlCommand cmd = new SqlCommand("SELECT user_log.date_time, user_log.distance_progress, goals.goal_name " +
                         "FROM user_log JOIN goals ON user_log.user_id = goals.user_id WHERE user_log.user_id = @userId", conn);
                     cmd.Parameters.AddWithValue("@userId", id);
                     SqlDataReader reader = cmd.ExecuteReader();

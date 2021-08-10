@@ -12,10 +12,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="userEvent in userEvents" v-bind:key="userEvent.name">
-          <td>{{ userEvent.name }}</td>
-          <td>{{ userEvent.userName }}</td>
-          <td>{{ userEvent.distanceProgress }}</td>        
+        <tr v-for="progress in userProgress" v-bind:key="progress.name">
+          <td>{{ progress.eventName }}</td>
+          <td>{{ progress.userName }}</td>
+          <td>{{ progress.distanceProgress }}</td>        
          
           <td></td>
         </tr>
@@ -33,10 +33,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="userEvent in userEvents" v-bind:key="userEvent.name">
-          <td>{{ event.name}}</td>
-          <td>{{ event.userName }}</td>
-          <td>{{ event.distanceProgress }}</td>      
+        <tr v-for="leader in leaderboard" v-bind:key="leader.name">
+          <td>{{ leader.eventName}}</td>
+          <td>{{ leader.userName }}</td>
+          <td>{{ leader.distanceProgress }}</td>      
          
           <td></td>
         </tr>
@@ -53,13 +53,13 @@ export default {
     return {
         userProgress:[],
         progress: {
-            name: "",
+            eventName: "",
             username: "",
             distanceProgress: ""
         },
         leaderboard: [],
         leader: {
-            name: "",
+            eventName: "",
             username: "",
             distanceProgress: ""
         }
@@ -67,12 +67,14 @@ export default {
     }
     },
     created() {
-    leaderboardService.getUserProgress().then((response) => {
-      this.userProgress = response.data;
-    });
-    leaderboardService.getLeaders().then((response) => {
+      const eventId = this.$route.params.eventId;
+       leaderboardService.getLeaders(eventId).then((response) => {
       this.leaderboard = response.data;
     });
+    leaderboardService.getUserProgress(eventId).then((response) => {
+      this.userProgress = response.data;
+    });
+   
   },
 };
 </script>

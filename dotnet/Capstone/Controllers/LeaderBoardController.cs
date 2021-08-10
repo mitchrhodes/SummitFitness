@@ -11,13 +11,13 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class LeaderBoardController : ControllerBase
+    public class LeaderboardController : ControllerBase
     {
 
         private readonly ILeaderBoardDAO leaderBoardDAO;
         private int tempEventId;
 
-        public LeaderBoardController(ILeaderBoardDAO _leaderBoardDAO)
+        public LeaderboardController(ILeaderBoardDAO _leaderBoardDAO)
         {
             leaderBoardDAO = _leaderBoardDAO;
         }
@@ -39,15 +39,15 @@ namespace Capstone.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult<List<EventLeaderBoard>> LeaderComparison(int eventId)
+        [HttpGet("user{id}")]
+        public ActionResult<List<EventLeaderBoard>> LeaderComparison(int id)
         {
             int userId = int.Parse(this.User.FindFirst("sub").Value);
 
             List<EventLeaderBoard> events = new List<EventLeaderBoard>();
             try
             {
-                events = leaderBoardDAO.LeaderComparison(eventId, userId);
+                events = leaderBoardDAO.LeaderComparison(id, userId);
                 return Ok(events);
             }
             catch (SqlException ex)

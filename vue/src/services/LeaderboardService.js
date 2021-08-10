@@ -8,8 +8,8 @@ export default{
     getLeaders(eventId){
         return axios.get(path + "/"+ eventId)
     },
-    getUserProgress(){
-        return axios.get(path)
+    getUserProgress(eventId){
+        return axios.get(path + "/user" + eventId)
     },
    
 }

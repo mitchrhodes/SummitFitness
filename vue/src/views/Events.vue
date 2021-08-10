@@ -45,7 +45,6 @@
     </div>
     <br />
     <form
-      
       v-show="isAddProgress"
       @submit.prevent="logEventProgress(), (isAddProgress = false)"
     >
@@ -94,14 +93,7 @@
             >
           </td>
           <td>
-            <a
-              class="btn btn-success"
-              v-on:click="
-                (isAddProgress = true),
-                  (updateEventProgress.eventId = userEvent.eventId)
-              "
-              >View Leaderboard</a
-            >
+            <a class="btn btn-success"><router-link class='btn btn-success' v-bind:to='{ name: "leaderboard", params:{eventId: userEvent.eventId }}'>View Leaderboard</router-link></a>
           </td>
           <td></td>
         </tr>

@@ -29,7 +29,7 @@ namespace Capstone.DAO
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("SELECT TOP 5 user_events.distance_progress, events.name, users.username " +
                         "FROM user_events JOIN users ON users.user_id = user_events.user_id " +
-                        "JOIN events ON events.event_id = user_events.event_id WHERE events.even_id = @eventId" +
+                        "JOIN events ON events.event_id = user_events.event_id WHERE events.event_id = @eventId " +
                         "ORDER BY user_events.distance_progress DESC", conn);
                     cmd.Parameters.AddWithValue("@eventId", id);
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -62,7 +62,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand("SELECT user_events.distance_progress, events.name, users.username FROM user_events " +
                         "JOIN users ON users.user_id = user_events.user_id " +
                         "JOIN events ON events.event_id = user_events.event_id " +
-                        "WHERE events.event_id = @eventId AND users.user_id = @user_id", conn);
+                        "WHERE events.event_id = @eventId AND users.user_id = @userId", conn);
                     cmd.Parameters.AddWithValue("@eventId", eventId);
                     cmd.Parameters.AddWithValue("@userId", userId);
                     SqlDataReader reader = cmd.ExecuteReader();

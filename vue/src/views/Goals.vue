@@ -59,7 +59,7 @@
           <th scope="col">Description</th>
           <th scope="col">Type</th>
           <th scope="col">Duration</th>
-          <th scope="col">Distance</th>
+          <th scope="col">Miles</th>
           <th scope="col">Progress</th>
           <th scope="col"></th>
         </tr>
@@ -132,6 +132,7 @@
           <select v-model="goal.type" class="form-control">
             <option>Running</option>
             <option>Walking</option>
+            <option>Hiking</option>
             <option>Biking</option>
             <option>Swimming</option>
           </select>
@@ -263,5 +264,6 @@ export default {
 .btn {
   background-color: #489CA5 !important;
   outline-color: #2D474D !important;
+  color: white;
 }
 </style>

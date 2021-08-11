@@ -139,12 +139,19 @@ export default {
 }
 
 #navbar-design {
-  background-color: #2d474d;
+  background-color: #12292F;
   color: #ffffff;
 }
 nav .navbar-nav li a {
-  color: white;
+  color: white;  
 }
+nav .navbar-nav li a:hover {
+  color: #A4BDC5;
+}
+
+
+
+
 
 
 </style>

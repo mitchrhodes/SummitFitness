@@ -68,7 +68,7 @@
           <th scope="col">Event</th>
           <th scope="col">Description</th>
           <th scope="col">Type</th>
-          <th scope="col">Duration</th>
+          <th scope="col">Event Length</th>
           <th scope="col">Progress</th>
           <th scope="col"></th>
           <th scope="col"></th>
@@ -80,8 +80,8 @@
           <td>{{ userEvent.name }}</td>
           <td>{{ userEvent.description }}</td>
           <td>{{ userEvent.type }}</td>
-          <td>{{ userEvent.duration }}</td>
-          <td>{{ userEvent.distanceProgress }}</td>
+          <td>{{ userEvent.duration }} days</td>
+          <td>{{ userEvent.distanceProgress }} miles</td>
           <td>
             <a
               class="btn"
@@ -93,7 +93,7 @@
             >
           </td>
           <td>
-            <router-link class='btn ' v-bind:to='{ name: "leaderboard", params:{eventId: userEvent.eventId }}'>View Leaderboard</router-link>
+            <router-link class='btn' v-bind:to='{ name: "leaderboard", params:{eventId: userEvent.eventId }}'>View Leaderboard</router-link>
           </td>
           <td></td>
         </tr>
@@ -107,7 +107,7 @@
           <th scope="col">Event</th>
           <th scope="col">Description</th>
           <th scope="col">Type</th>
-          <th scope="col">Duration</th>
+          <th scope="col">Event Length</th>
           <th scope="col"></th>
           <th scope="col"></th>
         </tr>
@@ -118,7 +118,7 @@
           <td>{{ event.name }}</td>
           <td>{{ event.description }}</td>
           <td>{{ event.type }}</td>
-          <td>{{ event.duration }}</td>
+          <td>{{ event.duration }} days</td>
           <td>
             <a class="btn" v-on:click="SignUp(event.eventId)"
               >Sign Up For Event</a

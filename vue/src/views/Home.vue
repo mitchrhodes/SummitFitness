@@ -19,6 +19,7 @@
     <br />
     <br />
     <br />
+    <img id="logo" src="https://i.postimg.cc/fRx0c2jD/SUMMIT11-1.png" alt="logo">
     <div class="text-center">
       <router-link :to="{ name: 'register' }" class="btn mx-3"
         >Create Account</router-link
@@ -46,6 +47,13 @@
 .btn {
   background-color: #489CA5 !important;
   outline-color: #2D474D !important;
+}
+#logo{
+  display: block;
+   margin-left: auto;
+  margin-right: auto;
+  height: 250px;
+  
 }
 
 </style>

@@ -1,11 +1,19 @@
 <template>
   <div>
-    <br>
-    <br>
-    <br>
-    <br>
+    <br />
+    <br />
+    <br />
+    <br />
     <h4 class="text-center">Change Password</h4>
-    <div class="alert alert-success" role="alert" v-show="isPasswordChanged">Password Changed!</div>
+     <div id="eventPasswordChanged" class="alert alert-dismissible fade show" role="alert" v-show="isPasswordChanged">Password Changed!
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>   
+
     <form @submit.prevent="sendEmail" class="mx-4">
       <div class="row">
         <div class="col">
@@ -80,7 +88,7 @@ export default {
             console.log(error.response);
           });
       } else {
-        this.$router.push("/");        
+        this.$router.push("/");
       }
       this.isPasswordChanged = true;
       this.user = {};
@@ -90,9 +98,12 @@ export default {
 </script>
 
 <style>
-
 .btn {
-  background-color: #489CA5 !important;
-  outline-color: #2D474D !important;
+  background-color: #489ca5 !important;
+  outline-color: #2d474d !important;
+}
+#eventPasswordChanged {
+  background-color: #489ca5;
+  color: white;
 }
 </style>

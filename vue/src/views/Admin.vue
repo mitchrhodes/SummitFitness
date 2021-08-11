@@ -124,6 +124,7 @@ export default {
       },
       isAddNewForm: false,
       isEventCreated: false,
+      isAdministratorAdded: false,
       event: {
         name: "",
         description: "",
@@ -147,6 +148,7 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
+        this.isAdministratorAdded = true;
     },
     refreshPage(){
      this.$router.go();
@@ -177,6 +179,10 @@ export default {
 .btn {
   background-color: #489CA5 !important;
   outline-color: #2D474D !important;
+  color: white;
+}
+#newAdministratorAdded{
+  background-color: #489CA5;
   color: white;
 }
 </style>

@@ -19,12 +19,8 @@
     </div>
 
     <!-- Added alert to progress updated, this refreshes the page when closed out so progress updates on screen-->
-    <div
-      class="alert alert-success mx-4"
-      role="alert"
-      v-show="isProgressUpdated"
-    >
-      Progress has been updated!
+         <div id="eventPasswordChanged" class="alert alert-dismissible fade show" role="alert" v-show="isProgressUpdated">Progress has been updated!
+
       <button
         type="button"
         class="close btn bg-transparent text-right"
@@ -70,9 +66,9 @@
           <td>{{ goal.name }}</td>
           <td>{{ goal.description }}</td>
           <td>{{ goal.type }}</td>
-          <td>{{ goal.duration }}</td>
-          <td>{{ goal.distance }}</td>
-          <td>{{ goal.distanceProgress }}</td>
+          <td>{{ goal.duration }} days</td>
+          <td>{{ goal.distance }} miles</td>
+          <td>{{ goal.distanceProgress }} miles</td>
           <td>
             <a
               class="btn "
@@ -92,14 +88,14 @@
         >Add Goal</a
       >
     </div>
-    <div class="alert alert-success mx-4" role="alert" v-show="isGoalCreated">
-      Goal Added!
+    <div id="eventGoalAdded" class="alert alert-dismissible fade show" role="alert" v-show="isGoalCreated">Goal Added!
       <button
         type="button"
         class="close btn bg-transparent text-right"
         data-dismiss="alert"
         aria-label="Close"
-        v-on:click="isGoalCreated = false"
+        v-on:click="(isGoalCreated = false), refreshPage()"
+        
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -261,6 +257,10 @@ export default {
 </script>
 
 <style>
+#eventGoalAdded{
+  background-color: #489CA5;
+  color: white;
+}
 .btn {
   background-color: #489CA5 !important;
   outline-color: #2D474D !important;

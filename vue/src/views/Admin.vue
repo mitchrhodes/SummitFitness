@@ -12,11 +12,23 @@
     </div>
     <div id="eventCreatedAlert" class="alert alert-dismissible fade show" role="alert" v-show="isEventCreated">
     Event Created!
+    <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+        v-on:click="refreshPage"
+      ></button>
+      </div>
+
+    <div id="newAdministratorAdded" class="alert alert-dismissible fade show" role="alert" v-show="isAdministratorAdded">New administrator added!
+
       <button
         type="button"
         class="btn-close"
         data-bs-dismiss="alert"
         aria-label="Close"
+        v-on:click="refreshPage"
       ></button>
     </div>
     <form class="mx-4" v-show="isAddNewForm" @submit.prevent="addEvent">
@@ -87,6 +99,7 @@
               class="btn"
               v-on:click="addAdmin(user)"
               v-show="user.role === 'user'"
+
             >
               Make Administrator
             </a>
@@ -134,7 +147,9 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
-      this.$router.go();
+    },
+    refreshPage(){
+     this.$router.go();
     },
 
     addEvent() {

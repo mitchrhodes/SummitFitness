@@ -16,7 +16,7 @@
         <tr v-for="eventActivity in eventHistory" v-bind:key="eventActivity.name">
           <td>{{ eventActivity.name }}</td>
           <td>{{ eventActivity.date }}</td>
-          <td>{{ eventActivity.distanceProgress }}</td>
+          <td>{{ eventActivity.distanceProgress }} miles</td>
         </tr>
       </tbody>
     </table>
@@ -33,7 +33,7 @@
         <tr v-for="goalActivity in goalHistory" v-bind:key="goalActivity.name">
           <td>{{ goalActivity.name }}</td>
           <td>{{ goalActivity.date }}</td>
-          <td>{{ goalActivity.distanceProgress }}</td>
+          <td>{{ goalActivity.distanceProgress }} miles</td>
         </tr>
       </tbody>
     </table>

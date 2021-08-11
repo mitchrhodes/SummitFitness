@@ -16,23 +16,19 @@
       </div>
     </div>
     <!-- added alert for event sign up -->
-    <div class="alert alert-success mx-4" role="alert" v-show="isEventSignedUp">
-      You are signed up for this event!
+      <div id="eventSignedUp" class="alert alert-dismissible fade show" role="alert" v-show="isEventSignedUp">You are signed up for this event!!
       <button
         type="button"
         class="close btn bg-transparent text-right"
         data-dismiss="alert"
         aria-label="Close"
+        v-on:click="refreshPage"
       >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div
-      class="alert alert-success mx-4"
-      role="alert"
-      v-show="isProgressUpdated"
-    >
-      Progress has been updated!
+     <div id="progressUpdated" class="alert alert-dismissible fade show" role="alert" v-show="isProgressUpdated">Progress has been updated!!
+
       <button
         type="button"
         class="close btn bg-transparent text-right"
@@ -213,6 +209,10 @@ export default {
 </script>
 
 <style>
+#eventSignedUp{
+  background-color: #489CA5;
+  color: white;
+}
 .btn {
   background-color: #489CA5 !important;
   outline-color: #2D474D !important;

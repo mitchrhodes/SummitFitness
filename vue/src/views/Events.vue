@@ -16,7 +16,13 @@
       </div>
     </div>
     <!-- added alert for event sign up -->
-      <div id="eventSignedUp" class="alert alert-dismissible fade show" role="alert" v-show="isEventSignedUp">You are signed up for this event!!
+    <div
+      id="eventSignedUp"
+      class="alert alert-dismissible fade show"
+      role="alert"
+      v-show="isEventSignedUp"
+    >
+      You are signed up for this event!!
       <button
         type="button"
         class="close btn bg-transparent text-right"
@@ -27,7 +33,13 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-     <div id="progressUpdated" class="alert alert-dismissible fade show" role="alert" v-show="isProgressUpdated">Progress has been updated!!
+    <div
+      id="progressUpdated"
+      class="alert alert-dismissible fade show"
+      role="alert"
+      v-show="isProgressUpdated"
+    >
+      Progress has been updated!!
 
       <button
         type="button"
@@ -50,9 +62,7 @@
         id="progress"
         v-model="updateEventProgress.distanceProgress"
       />
-      <button class="btn " type="submit">
-        Update Progress
-      </button>
+      <button class="btn" type="submit">Update Progress</button>
     </form>
     <br />
 
@@ -89,7 +99,14 @@
             >
           </td>
           <td>
-            <router-link class='btn' v-bind:to='{ name: "leaderboard", params:{eventId: userEvent.eventId }}'>View Leaderboard</router-link>
+            <router-link
+              class="btn"
+              v-bind:to="{
+                name: 'leaderboard',
+                params: { eventId: userEvent.eventId },
+              }"
+              >View Leaderboard</router-link
+            >
           </td>
           <td></td>
         </tr>
@@ -209,17 +226,17 @@ export default {
 </script>
 
 <style>
-#eventSignedUp{
-  background-color: #489CA5;
+#eventSignedUp {
+  background-color: #489ca5;
   color: white;
 }
-#progressUpdated{
-  background-color: #489CA5;
+#progressUpdated {
+  background-color: #489ca5;
   color: white;
 }
 .btn {
-  background-color: #4A9081 !important;
-  outline-color: #2D474D !important;
+  background-color: #4a9081 !important;
+  outline-color: #2d474d !important;
   color: white;
 }
 </style>

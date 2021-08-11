@@ -19,7 +19,13 @@
     </div>
 
     <!-- Added alert to progress updated, this refreshes the page when closed out so progress updates on screen-->
-         <div id="eventPasswordChanged" class="alert alert-dismissible fade show" role="alert" v-show="isProgressUpdated">Progress has been updated!
+    <div
+      id="eventPasswordChanged"
+      class="alert alert-dismissible fade show"
+      role="alert"
+      v-show="isProgressUpdated"
+    >
+      Progress has been updated!
 
       <button
         type="button"
@@ -31,7 +37,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <br>
+    <br />
     <form
       v-show="isAddProgress"
       @submit.prevent="logGoal(), (isAddProgress = false)"
@@ -46,7 +52,7 @@
         Update Progress
       </button>
     </form>
-    <br>
+    <br />
     <table class="table table-hover">
       <thead>
         <tr>
@@ -55,7 +61,7 @@
           <th scope="col">Description</th>
           <th scope="col">Type</th>
           <th scope="col">Duration</th>
-          <th scope="col">Miles</th>
+          <th scope="col">Goal Distance</th>
           <th scope="col">Progress</th>
           <th scope="col"></th>
         </tr>
@@ -68,10 +74,12 @@
           <td>{{ goal.type }}</td>
           <td>{{ goal.duration }} days</td>
           <td>{{ goal.distance }} miles</td>
-          <td>{{ goal.distanceProgress }} miles</td>
+          <td v-if="goal.distanceProgress < goal.distance">{{ goal.distanceProgress }} miles</td>
+          <td v-else>Goal Completed!</td>
           <td>
             <a
-              class="btn "
+            v-show="goal.distanceProgress < goal.distance"
+              class="btn"
               v-on:click="
                 (isAddProgress = true), (updateProgress.goalId = goal.goalId)
               "
@@ -88,14 +96,19 @@
         >Add Goal</a
       >
     </div>
-    <div id="eventGoalAdded" class="alert alert-dismissible fade show" role="alert" v-show="isGoalCreated">Goal Added!
+    <div
+      id="eventGoalAdded"
+      class="alert alert-dismissible fade show"
+      role="alert"
+      v-show="isGoalCreated"
+    >
+      Goal Added!
       <button
         type="button"
         class="close btn bg-transparent text-right"
         data-dismiss="alert"
         aria-label="Close"
         v-on:click="(isGoalCreated = false), refreshPage()"
-        
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -155,9 +168,7 @@
         </div>
       </div>
       <div class="text-center my-3">
-        <button class="btn" type="submit">
-          Add Goal
-        </button>
+        <button class="btn" type="submit">Add Goal</button>
       </div>
     </form>
   </div>
@@ -257,13 +268,13 @@ export default {
 </script>
 
 <style>
-#eventGoalAdded{
-  background-color: #489CA5;
+#eventGoalAdded {
+  background-color: #489ca5;
   color: white;
 }
 .btn {
-  background-color: #489CA5 !important;
-  outline-color: #2D474D !important;
+  background-color: #489ca5 !important;
+  outline-color: #2d474d !important;
   color: white;
 }
 </style>

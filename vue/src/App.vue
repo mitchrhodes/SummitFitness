@@ -11,9 +11,9 @@
           aria-controls="navbarExample01"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        >
+        > 
           <i class="fas fa-bars"></i>
-        </button>
+        </button> 
         <div class="collapse navbar-collapse" id="navbarExample01">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
@@ -31,6 +31,7 @@
             </li>
             <li class="nav-item active">
               <router-link
+              
                 class="nav-link"
                 v-bind:to="{ name: 'register' }"
                v-show="!isUser(this.$store.state.user) && !isAdmin(this.$store.state.user)"
@@ -140,14 +141,20 @@ export default {
 }
 
 #navbar-design {
-  background-color: #2D474D;
+  background-color: #b3cfc7;
   color: #ffffff;
 }
 nav .navbar-nav li a {
-  color: white;  
+  color: #2D474D;
+  
 }
 nav .navbar-nav li a:hover {
   color: #A4BDC5;
+  
+}
+router-link {
+color: white
+
 }
 
 

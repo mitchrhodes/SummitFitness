@@ -2,6 +2,7 @@
   <div>
     <br />
     <br />
+     <br />
     <h1>Your Event Progress</h1>
     <table class="table table-hover">
       <thead>
@@ -15,7 +16,7 @@
         <tr v-for="progress in userProgress" v-bind:key="progress.name">
           <td>{{ progress.eventName }}</td>
           <td>{{ progress.userName }}</td>
-          <td>{{ progress.distanceProgress }}</td>        
+          <td>{{ progress.distanceProgress }} miles</td>        
          
           <td></td>
         </tr>
@@ -36,7 +37,7 @@
         <tr v-for="leader in leaderboard" v-bind:key="leader.name">
           <td>{{ leader.eventName}}</td>
           <td>{{ leader.userName }}</td>
-          <td>{{ leader.distanceProgress }}</td>      
+          <td>{{ leader.distanceProgress }} miles</td>      
          
           <td></td>
         </tr>

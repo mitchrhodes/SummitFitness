@@ -10,7 +10,7 @@
       "
     >
       <div class="d-flex justify-content-center align-items-center h-100">
-        <div class="text-white">
+        <div class="text-black">
           <h1 class="mb-3">Events</h1>
         </div>
       </div>
@@ -213,8 +213,12 @@ export default {
   background-color: #489CA5;
   color: white;
 }
+#progressUpdated{
+  background-color: #489CA5;
+  color: white;
+}
 .btn {
-  background-color: #489CA5 !important;
+  background-color: #4A9081 !important;
   outline-color: #2D474D !important;
   color: white;
 }

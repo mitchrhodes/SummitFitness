@@ -3,14 +3,23 @@
     <br />
     <br />
     <br />
-    <img id="banner" src="https://i.postimg.cc/RhkNfKWW/summit8-1.png" alt="banner">
+    <img
+      id="banner"
+      src="https://i.postimg.cc/RhkNfKWW/summit8-1.png"
+      alt="banner"
+    />
     <br />
     <h3 class="text-center">Welcome to Summit Fitness</h3>
     <br />
-    <h6 class="text-center mx-5" >We all have our mountains to climb.  But no matter the size of the obstacle you're looking to overcome, the only way to get there is one step at a time. 
-       At Summit Fitness, we're here for you every step you take on your fitness journey.  Whether you are looking to see how you stack up against the competition in our virtual events or
-       have a distance goal you are trying to reach for the first time ever, let us help you reach your peak.  Track your progress, see results. 
-</h6>
+    <h6 class="text-center mx-5">
+      We all have our mountains to climb. But no matter the size of the obstacle
+      you're looking to overcome, the only way to get there is one step at a
+      time. At Summit Fitness, we're here for you every step you take on your
+      fitness journey. Whether you are looking to see how you stack up against
+      the competition in our virtual events or have a distance goal you are
+      trying to reach for the first time ever, let us help you reach your peak.
+      Track your progress, see results.
+    </h6>
     <br />
     <br />
     <br />
@@ -19,16 +28,18 @@
     <br />
     <br />
     <br />
-    <img id="logo" src="https://i.postimg.cc/fRx0c2jD/SUMMIT11-1.png" alt="logo">
+    <img
+      id="logo"
+      src="https://i.postimg.cc/fRx0c2jD/SUMMIT11-1.png"
+      alt="logo"
+    />
     <div class="text-center">
       <router-link :to="{ name: 'register' }" class="btn mx-3"
         >Create Account</router-link
       >
-      <router-link :to="{ name: 'login' }" class="btn mx-3"
-        >Log In</router-link
-      >
-      <br>
-      <br>
+      <router-link :to="{ name: 'login' }" class="btn mx-3">Log In</router-link>
+      <br />
+      <br />
     </div>
   </div>
 </template>
@@ -37,7 +48,7 @@
 </script>
 
 <style>
-#banner{
+#banner {
   height: 300px;
   display: block;
   margin-left: auto;
@@ -45,15 +56,13 @@
   width: 90%;
 }
 .btn {
-  background-color: #489CA5 !important;
-  outline-color: #2D474D !important;
+  background-color: #489ca5 !important;
+  outline-color: #2d474d !important;
 }
-#logo{
+#logo {
   display: block;
-   margin-left: auto;
+  margin-left: auto;
   margin-right: auto;
   height: 250px;
-  
 }
-
 </style>

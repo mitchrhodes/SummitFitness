@@ -2,6 +2,7 @@
   <div id="app" v-bind:style="{ backgroundColor: a4bdc5}">
     <nav id="navbar-design" class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid">
+        <img class="navbar-brand" src="https://i.ibb.co/mqm8QS9/summit-Logo-Cropped.png" alt="..." height="55">
         <button
           class="navbar-toggler"
           type="button"
@@ -32,7 +33,7 @@
               <router-link
                 class="nav-link"
                 v-bind:to="{ name: 'register' }"
-                v-show="!isUser(this.$store.state.user)"
+               v-show="!isUser(this.$store.state.user) && !isAdmin(this.$store.state.user)"
                 >Create Account</router-link
               >
             </li>
@@ -139,7 +140,7 @@ export default {
 }
 
 #navbar-design {
-  background-color: #12292F;
+  background-color: #2D474D;
   color: #ffffff;
 }
 nav .navbar-nav li a {

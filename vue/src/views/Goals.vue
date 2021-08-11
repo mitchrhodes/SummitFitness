@@ -59,7 +59,7 @@
           <th scope="col">Description</th>
           <th scope="col">Type</th>
           <th scope="col">Duration</th>
-          <th scope="col">Distance</th>
+          <th scope="col">Miles</th>
           <th scope="col">Progress</th>
           <th scope="col"></th>
         </tr>
@@ -75,7 +75,7 @@
           <td>{{ goal.distanceProgress }}</td>
           <td>
             <a
-              class="btn btn-success"
+              class="btn "
               v-on:click="
                 (isAddProgress = true), (updateProgress.goalId = goal.goalId)
               "
@@ -87,7 +87,7 @@
     </table>
     <div class="text-center">
       <a
-        class="btn btn-primary my-3"
+        class="btn my-3"
         v-on:click="(isAddNewForm = true), (isGoalCreated = false)"
         >Add Goal</a
       >
@@ -132,6 +132,7 @@
           <select v-model="goal.type" class="form-control">
             <option>Running</option>
             <option>Walking</option>
+            <option>Hiking</option>
             <option>Biking</option>
             <option>Swimming</option>
           </select>
@@ -158,7 +159,7 @@
         </div>
       </div>
       <div class="text-center my-3">
-        <button class="btn btn-primary btn-block" type="submit">
+        <button class="btn" type="submit">
           Add Goal
         </button>
       </div>
@@ -260,4 +261,9 @@ export default {
 </script>
 
 <style>
+.btn {
+  background-color: #489CA5 !important;
+  outline-color: #2D474D !important;
+  color: white;
+}
 </style>

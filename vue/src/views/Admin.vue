@@ -1,26 +1,23 @@
 <template>
-  <div>
-    <br>
-    <br>
-    <br>
+  <div class="admin">
+    <br />
+    <br />
+    <br />
     <div class="text-center">
       <a
-        class="btn btn-primary my-3"
+        class="btn my-3"
         v-on:click="(isAddNewForm = true), (isEventCreated = false)"
         >Create Virtual Event</a
       >
     </div>
-    <div class="alert alert-success mx-4" role="alert" v-show="isEventCreated">
-      Event Created!
+    <div id="eventCreatedAlert" class="alert alert-dismissible fade show" role="alert" v-show="isEventCreated">
+    Event Created!
       <button
         type="button"
-        class="close btn bg-transparent text-right"
-        data-dismiss="alert"
+        class="btn-close"
+        data-bs-dismiss="alert"
         aria-label="Close"
-        v-on:click="isEventCreated = false"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
+      ></button>
     </div>
     <form class="mx-4" v-show="isAddNewForm" @submit.prevent="addEvent">
       <div class="row">
@@ -50,6 +47,7 @@
             <option>Running</option>
             <option>Walking</option>
             <option>Biking</option>
+            <option>Hiking</option>
             <option>Swimming</option>
           </select>
         </div>
@@ -65,7 +63,7 @@
         </div>
       </div>
       <div class="text-center my-3">
-        <button class="btn btn-primary btn-block" type="submit">
+        <button class="btn btn-block" type="submit">
           Create Event
         </button>
       </div>
@@ -86,7 +84,7 @@
           <td>{{ user.role }}</td>
           <td>
             <a
-              class="btn btn-success"
+              class="btn"
               v-on:click="addAdmin(user)"
               v-show="user.role === 'user'"
             >
@@ -157,4 +155,13 @@ export default {
 </script>
 
 <style>
+#eventCreatedAlert{
+  background-color: #489CA5;
+  color: white;
+}
+.btn {
+  background-color: #489CA5 !important;
+  outline-color: #2D474D !important;
+  color: white;
+}
 </style>

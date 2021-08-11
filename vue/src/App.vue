@@ -1,7 +1,6 @@
 <template>
-  <div id="app">
-    <nav  class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-
+  <div id="app" v-bind:style="{ backgroundColor: a4bdc5}">
+    <nav id="navbar-design" class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -17,24 +16,30 @@
         <div class="collapse navbar-collapse" id="navbarExample01">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
-              <router-link class="nav-link" v-bind:to="{ name: 'home' }"             
+              <router-link class="nav-link" v-bind:to="{ name: 'home' }"
                 >Home</router-link
               >
             </li>
             <li class="nav-item active">
-              <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-show="!isUser(this.$store.state.user)"
+              <router-link
+                class="nav-link"
+                v-bind:to="{ name: 'login' }"
+                v-show="!isUser(this.$store.state.user) && !isAdmin(this.$store.state.user)"
                 >Log In</router-link
               >
             </li>
-             <li class="nav-item active">
-              <router-link class="nav-link" v-bind:to="{ name: 'register' }" v-show="!isUser(this.$store.state.user)"
+            <li class="nav-item active">
+              <router-link
+                class="nav-link"
+                v-bind:to="{ name: 'register' }"
+                v-show="!isUser(this.$store.state.user)"
                 >Create Account</router-link
               >
             </li>
             <li class="nav-item">
               <router-link
                 class="nav-link"
-                v-show="                
+                v-show="
                   isAdmin(this.$store.state.user) ||
                   isUser(this.$store.state.user)
                 "
@@ -106,14 +111,14 @@
 </template>
 <script>
 export default {
-  data()  {
+  data() {
     return {
       isLoggedIn: false,
-    }
+    };
   },
   methods: {
     isAdmin(user) {
-      if (user.role === "admin") {        
+      if (user.role === "admin") {
         return true;
       }
       return false;
@@ -130,8 +135,23 @@ export default {
 
 <style >
 #app {
-  background-color: #A4BDC5;
+  background-color: #a4bdc5;
 }
+
+#navbar-design {
+  background-color: #12292F;
+  color: #ffffff;
+}
+nav .navbar-nav li a {
+  color: white;  
+}
+nav .navbar-nav li a:hover {
+  color: #A4BDC5;
+}
+
+
+
+
 
 
 </style>

@@ -54,7 +54,7 @@
         id="progress"
         v-model="updateEventProgress.distanceProgress"
       />
-      <button class="btn btn-primary btn-block" type="submit">
+      <button class="btn " type="submit">
         Update Progress
       </button>
     </form>
@@ -68,7 +68,7 @@
           <th scope="col">Event</th>
           <th scope="col">Description</th>
           <th scope="col">Type</th>
-          <th scope="col">Duration</th>
+          <th scope="col">Event Length</th>
           <th scope="col">Progress</th>
           <th scope="col"></th>
           <th scope="col"></th>
@@ -80,11 +80,11 @@
           <td>{{ userEvent.name }}</td>
           <td>{{ userEvent.description }}</td>
           <td>{{ userEvent.type }}</td>
-          <td>{{ userEvent.duration }}</td>
-          <td>{{ userEvent.distanceProgress }}</td>
+          <td>{{ userEvent.duration }} days</td>
+          <td>{{ userEvent.distanceProgress }} miles</td>
           <td>
             <a
-              class="btn btn-success"
+              class="btn"
               v-on:click="
                 (isAddProgress = true),
                   (updateEventProgress.eventId = userEvent.eventId)
@@ -93,7 +93,7 @@
             >
           </td>
           <td>
-            <a class="btn btn-success"><router-link class='btn btn-success' v-bind:to='{ name: "leaderboard", params:{eventId: userEvent.eventId }}'>View Leaderboard</router-link></a>
+            <router-link class='btn' v-bind:to='{ name: "leaderboard", params:{eventId: userEvent.eventId }}'>View Leaderboard</router-link>
           </td>
           <td></td>
         </tr>
@@ -107,7 +107,7 @@
           <th scope="col">Event</th>
           <th scope="col">Description</th>
           <th scope="col">Type</th>
-          <th scope="col">Duration</th>
+          <th scope="col">Event Length</th>
           <th scope="col"></th>
           <th scope="col"></th>
         </tr>
@@ -118,9 +118,9 @@
           <td>{{ event.name }}</td>
           <td>{{ event.description }}</td>
           <td>{{ event.type }}</td>
-          <td>{{ event.duration }}</td>
+          <td>{{ event.duration }} days</td>
           <td>
-            <a class="btn btn-success" v-on:click="SignUp(event.eventId)"
+            <a class="btn" v-on:click="SignUp(event.eventId)"
               >Sign Up For Event</a
             >
           </td>
@@ -213,4 +213,9 @@ export default {
 </script>
 
 <style>
+.btn {
+  background-color: #489CA5 !important;
+  outline-color: #2D474D !important;
+  color: white;
+}
 </style>

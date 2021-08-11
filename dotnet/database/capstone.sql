@@ -71,67 +71,66 @@ CREATE TABLE user_log(
 INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user', 'theofficialbobojones@gmail.com');
 --admin/password
 INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Billy','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Mike','gYax/nldlps+n/IL3paG1tnX0Jk= ', 'rDaoxV0X3rg=','user', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('John','aFfNx8CzaVHSfFjSfM4Zx/ehF0c= ', 'lFYlQhiR3/Q=','user', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Sarah','tF8wj5J9u9pEt7qg9sMi46i5Vwg= ', 'bB2hzm+kWxw=','user', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Mia','O0WnyUuipLQayYpF5G4ncL/oR4Q=', 'F4y+FwW1P+Q=','user', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Luke','I8YxsZAwEcz4Oiy/4v6H5nUZ6C8=', 'VG1l+Xiboi8=','user', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Kurt','kv6yYuRQmHKJ5aFq5B6qNwZG8+g=', 'FUEq3Hb//qw=','user', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Teresa','3uzzKuAjxA0A/a4a15RtOLxGvyM=', 'kaTEMu7zNjw=','admin', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Tom','sZUFmSEGWD7TRygtc68rreWiP9o', 'Ys9CrV56YSg=','user', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Andrew','pipfCNqnyaPHTPKxoVQ1+Yn7qks=', 'oeY7C+qU448=','user', 'theofficialbobojones@gmail.com');
-INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Audra','qIkLG7VXclqW1COmZdaFR7WVpuY=', 'UaIVI1N6CfQ=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Billy Hamilton','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Mike Johansen','gYax/nldlps+n/IL3paG1tnX0Jk= ', 'rDaoxV0X3rg=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('John Smith','aFfNx8CzaVHSfFjSfM4Zx/ehF0c= ', 'lFYlQhiR3/Q=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Sarah Walker','tF8wj5J9u9pEt7qg9sMi46i5Vwg= ', 'bB2hzm+kWxw=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Mia Porter','O0WnyUuipLQayYpF5G4ncL/oR4Q=', 'F4y+FwW1P+Q=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Luke Doncic','I8YxsZAwEcz4Oiy/4v6H5nUZ6C8=', 'VG1l+Xiboi8=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Kurt Warner','kv6yYuRQmHKJ5aFq5B6qNwZG8+g=', 'FUEq3Hb//qw=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Teresa Cole','3uzzKuAjxA0A/a4a15RtOLxGvyM=', 'kaTEMu7zNjw=','admin', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Tom Delong','sZUFmSEGWD7TRygtc68rreWiP9o', 'Ys9CrV56YSg=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Andrew Thompson','pipfCNqnyaPHTPKxoVQ1+Yn7qks=', 'oeY7C+qU448=','user', 'theofficialbobojones@gmail.com');
+INSERT INTO users (username, password_hash, salt, user_role, email) VALUES ('Audra Herring','qIkLG7VXclqW1COmZdaFR7WVpuY=', 'UaIVI1N6CfQ=','user', 'theofficialbobojones@gmail.com');
 
 
 --Events
-INSERT INTO events (name, description, type, period_in_days) VALUES ('pellytonya', 'big ol bike ride', 'cycling', 7);
+INSERT INTO events (name, description, type, period_in_days) VALUES ('Pellytonya', 'Ride with the peloton, reach your dreams', 'Cycling', 7);
 
-INSERT INTO events (name, description, type, period_in_days) VALUES ('Mega-Marathon', 'Walk 500 Miles', 'Walking', 15);
+INSERT INTO events (name, description, type, period_in_days) VALUES ('Mega-Marathon', 'Walk 500 Miles in the month of August', 'Walking', 15);
 
-INSERT INTO events (name, description, type, period_in_days) VALUES ('400m Medley', 'All four swimming strokes', 'Swimming', 4);
+INSERT INTO events (name, description, type, period_in_days) VALUES ('400m Medley', 'All four swimming strokes in your lane', 'Swimming', 4);
 
-INSERT INTO events (name, description, type, period_in_days) VALUES ('Charity Walk', 'Walk for your favorite local cause', 'Walking', 1);
+INSERT INTO events (name, description, type, period_in_days) VALUES ('Charity Walk for Arthritis', 'Local Hospital fundraiser. Exercise and Charity? Check!', 'Walking', 1);
 
-INSERT INTO events (name, description, type, period_in_days) VALUES ('High School Fun Run', 'Revisit your old stomping grounds and run with friends', 'running', 1);
+INSERT INTO events (name, description, type, period_in_days) VALUES ('High School Fun Run', 'Revisit your old stomping grounds and run with friends', 'Running', 1);
 
-INSERT INTO events (name, description, type, period_in_days) VALUES ('Swim Lake Erie', 'Take your life into your hands and swim in Lake Erie', 'Swimming', 2);
+INSERT INTO events (name, description, type, period_in_days) VALUES ('Swim Lake Erie', 'Cleveland Browns are hosting a swim for heart health', 'Swimming', 2);
 
-INSERT INTO events (name, description, type, period_in_days) VALUES ('Cycle Across the USA', 'Can you cycle from California to Maine?', 'cycling', 15);
+INSERT INTO events (name, description, type, period_in_days) VALUES ('Cycle Across the USA', 'Can you cycle from California to Maine?', 'Cycling', 15);
 
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Marathon', 'Run a marathon', 'Running', 1, 1);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('10K', 'Run 6.2 Miles', 'Running', 1, 1);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Marathon', 'Run a marathon', 'speedwalking', 5, 1);
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('10K', 'Run 6.2 Miles', 'Fun Run', 5, 1);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Half Marathon', 'Run a half marathon', 'Running ', 1, 1);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('100K', 'Run 60.2 Miles', 'Running', 5, 1);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Half Marathon', 'Run a half marathon', 'speedwalking', 5, 1);
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('100K', 'Run 60.2 Miles', 'Fun Run', 5, 1);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('CycloMadness', 'Long Distance Cylco-Cross Through Columbus', 'Cycling', 5, 2);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Disco INFERNO', 'Funky Dance Competition', 'Aerobics', 5, 2);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('CycloMadness', 'Cycle Until your legs fall off', 'speedwalking', 5, 2);
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Disco INFERNO', 'Funky Dance Competition', 'Fun Run', 5, 2);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Pirate Themed Fun Run', 'Race for the buried treasure!', 'Running', 5, 3);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Roller Derby', 'Get the Pads on and Blades rolling', 'Inline Skating', 5, 3);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Pirate Themed Fun Run', 'Race for the buried treasure', 'speedwalking', 5, 3);
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Roller Derby', 'Not quite sure what roller derby is but it looks fun', 'Fun Run', 5, 3);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Softball Tournement', 'Hit the Diamond and bring some sunflower seeds', 'Softball', 5, 4);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Billy Idol Sing Along', 'Sing some 80s music!', 'Aerobics', 5, 4);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Softball Tournement', 'Relive the glory days of warming the bench on JV', 'speedwalking', 5, 4);
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Billy Idol Sing Along', 'Sing some 80s music', 'Fun Run', 5, 4);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Curling', 'SWEEP SWEEP!', 'Skating', 5, 5);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Richard Simmons Dance Off', 'Im a maniac!', 'Aerobics', 5, 5);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Curling', 'SWEEP SWEEP!', 'speedwalking', 5, 5);
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Richard Simmons Dance Off', 'Im a maniac!', 'Fun Run', 5, 5);
-
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Ballet Met', 'Dance on your tippy toes', 'speedwalking', 5, 6);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Ballet Met', 'Dance on your tippy toes', 'Aerobics', 5, 6);
 INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Race against Michael Johnson', '100 Meter Dash', 'Fun Run', 5, 6);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Usain Bolt Run off', 'Try to run away from Usain Bolt', 'speedwalking', 5, 7);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Usain Bolt Run off', 'Try to run away from Usain Bolt', 'Fun Run', 5, 7);
 INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Football Game', 'Classic Gridiron clash', 'Fun Run', 5, 7);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Unicycle Across Texas', 'Grow your mustache and eat steak while on your uni', 'speedwalking', 5, 8);
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Swim the Pacific', 'I used to have to swim the pacific to get to school back in my day', 'Fun Run', 5, 8);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Unicycle Across Texas', 'Grow your mustache and eat steak while on your uni', 'Cycling', 5, 8);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Swim LA', 'Back to School Swimming meet in Downtown LA!', 'Swimming', 5, 8);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('WindSurf', 'NICE!', 'speedwalking', 5, 9);
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Ride into Space', 'Join Bezos in outer space', 'Fun Run', 5, 9);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('WindSurf', 'Rental Eqipment Available!', 'Extreme Sport', 5, 9);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Hike Angels Landing', 'Zion National Parks greatest hike', 'Hiking', 5, 9);
 
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Get off the couch to go get potato chips', 'You can do it', 'speedwalking', 5, 10);
-INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Learn to Ride a Horse', 'YeeHaw', 'Fun Run', 5, 10);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Hike Old Mans Cave', 'Break out your hiking boots', 'Hiking', 5, 10);
+INSERT INTO goals (goal_name, goal_description, goal_type, period_in_days, user_id) VALUES ('Learn to Ride a Horse', 'Instructors will be ready with equipment!', 'Equestrian', 5, 10);
 
 
 

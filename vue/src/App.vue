@@ -33,7 +33,7 @@
               <router-link
                 class="nav-link"
                 v-bind:to="{ name: 'register' }"
-                v-show="!isUser(this.$store.state.user)"
+               v-show="!isUser(this.$store.state.user) && !isAdmin(this.$store.state.user)"
                 >Create Account</router-link
               >
             </li>
